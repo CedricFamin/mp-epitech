@@ -34,6 +34,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2ECFD07E16BC197A007C9FF9 /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ECFD07D16BC197A007C9FF9 /* Program.cpp */; };
 		B009E8DA2C824E6DBD008F63 /* trixel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBABF92BA98943329057D130 /* trixel.cpp */; settings = {COMPILER_FLAGS = ""; }; };
 		BCBB0E726F92486AAE429FF3 /* htm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A872C48FA4C4432B8B198E3 /* htm.cpp */; settings = {COMPILER_FLAGS = ""; }; };
 		C4CC8F54367E4FB0A8F66B5D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FE30AB0191EA427FA5639ABA /* main.cpp */; settings = {COMPILER_FLAGS = ""; }; };
@@ -63,6 +64,8 @@
 		170BAD3F9215437492B490D4 /* logservice.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = logservice.hpp; path = includes/logservice.hpp; sourceTree = SOURCE_ROOT; };
 		29C52D109EFB46F9BEFB0BE3 /* main.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = main.hpp; path = includes/main.hpp; sourceTree = SOURCE_ROOT; };
 		2A872C48FA4C4432B8B198E3 /* htm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = htm.cpp; path = sources/htm.cpp; sourceTree = SOURCE_ROOT; };
+		2ECFD07C16BC196D007C9FF9 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Program.h; path = includes/Program.h; sourceTree = "<group>"; };
+		2ECFD07D16BC197A007C9FF9 /* Program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Program.cpp; path = sources/Program.cpp; sourceTree = "<group>"; };
 		430FFBCB0039469BB421CE9E /* trixel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = trixel.hpp; path = includes/trixel.hpp; sourceTree = SOURCE_ROOT; };
 		54BD93DFC842410CAB095B6E /* pointinfo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = pointinfo.hpp; path = includes/pointinfo.hpp; sourceTree = SOURCE_ROOT; };
 		78970DBCB0C14C46A637EB8A /* logservice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = logservice.cpp; path = sources/logservice.cpp; sourceTree = SOURCE_ROOT; };
@@ -104,6 +107,7 @@
 		5DA80A5B20654BE590887935 /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
+				2ECFD07D16BC197A007C9FF9 /* Program.cpp */,
 				2A872C48FA4C4432B8B198E3 /* htm.cpp */,
 				ECAC2156AFE74D6581D52A79 /* htmasciiparser.cpp */,
 				78970DBCB0C14C46A637EB8A /* logservice.cpp */,
@@ -168,6 +172,7 @@
 		EE3C5D7F7412404284999A4B /* Header Files */ = {
 			isa = PBXGroup;
 			children = (
+				2ECFD07C16BC196D007C9FF9 /* Program.h */,
 				7FC145F2B4E94646A7A02603 /* htm.hpp */,
 				969C92C5B34741D09E1F4898 /* htmasciiparser.hpp */,
 				16826B946E34438391864AC8 /* htmconstraint.hpp */,
@@ -272,6 +277,7 @@
 				DCFC100D86034C80878F018C /* logservice.cpp in Sources */,
 				C4CC8F54367E4FB0A8F66B5D /* main.cpp in Sources */,
 				B009E8DA2C824E6DBD008F63 /* trixel.cpp in Sources */,
+				2ECFD07E16BC197A007C9FF9 /* Program.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
