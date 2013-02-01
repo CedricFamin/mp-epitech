@@ -12,8 +12,16 @@
 *.la
 *.a
 
+*~
+
 #directory
 bin
 *.build
 
 *Pamilator*
+
+#CMake
+CMakeCache.txt
+
+#XCode
+*.xcodeproj

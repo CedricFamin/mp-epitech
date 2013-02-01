@@ -27,6 +27,7 @@ int main(int ac, char **av)
 		LS_ADDMSG(LogService::NOTICE, "main", "Computing Normal Catalog...");
 		htm->CreateOctahedron();
 		parser->Parse(file);
+        htm->GeneratePoint(parser->getObjects());
 		htm->CreateHTM();
 		LS_ADDMSG(LogService::NOTICE, "main", "HTM Created for Normal Catalog");
 		unsigned int nn = htm->TwoPointsCorrelation(radius, delta);
@@ -52,7 +53,7 @@ int main(int ac, char **av)
 			LS_ADDMSG(LogService::NOTICE, "main", tmp.str());
 			htm->DeleteOctahedron();
 			htm->CreateOctahedron();
-			parser->UniformNumberGenerator(raMin, raMax, decMin, decMax);
+			htm->UniformNumberGenerator(parser->getNbObj(), raMin, raMax, decMin, decMax);
 			htm->CreateHTM();
 			
 			unsigned int currentRR = htm->TwoPointsCorrelation(radius, delta);
@@ -62,7 +63,7 @@ int main(int ac, char **av)
 			
 			LS_ADDMSG(LogService::NOTICE, "main", tmp.str());
 			
-			parser->Parse(file);
+			htm->GeneratePoint(parser->getObjects());
 			htm->CreateHTM();
 			unsigned int currentNR = htm->TwoPointsCorrelation(radius, delta);
 			nr += currentNR;

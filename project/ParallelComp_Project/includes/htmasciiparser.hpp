@@ -7,10 +7,10 @@
 #include <string>
 #include <random>
 #include <chrono>
+#include <vector>
 
 // C includes
 #include <math.h>
-#include <time.h>
 
 //BLINK Logservice
 #include "logservice.hpp"
@@ -28,8 +28,8 @@ namespace ICoDF_HTM
 	{
 	public:
 		void Parse(std::string& filename);
-		void UniformNumberGenerator(const double& raMin, const double& raMax, const double& decMin, const double& decMax);
-		unsigned int& getNbObj(void);
+		unsigned int getNbObj(void) const;
+        std::vector<std::pair<double, double>> const & getObjects(void) const;
 		
 		// DEFAULT CTOR
 		HTMAsciiParser(HTM * parHtm);
@@ -37,7 +37,7 @@ namespace ICoDF_HTM
 		// DEFAULT DTOR
 		~HTMAsciiParser(void);
 	private:
-		HTM* _htm;
-		unsigned int nbObj;
+		unsigned int                           nbObj;
+		std::vector<std::pair<double, double>> _objects;
 	};
 }
