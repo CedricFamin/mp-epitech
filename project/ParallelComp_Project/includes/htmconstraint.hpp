@@ -9,11 +9,11 @@
 
 namespace ICoDF_HTM
 {
-  typedef struct HTMConstraint_s
-  {
-    std::list<trixel_t*> _inside;
-    std::list<trixel_t*> _partial;
-  } HTMConstraint_t;
+    typedef struct HTMConstraint_s
+    {
+        std::list<trixel_t*> _inside;
+        std::list<trixel_t*> _partial;
+    } HTMConstraint_t;
 }
 
 #endif /* __ICODF_HTM_HTMCONSTRAINT__H__ */

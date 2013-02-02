@@ -63,6 +63,10 @@ void Program::Clean()
     _htm = 0;
     delete _parser;
     _parser = 0;
+    _raMin = .0;
+    _raMax = .0;
+    _decMin = .0;
+    _decMax = .0;
 }
 
 void Program::Launch()
