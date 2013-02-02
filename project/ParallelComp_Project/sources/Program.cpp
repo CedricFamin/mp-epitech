@@ -71,6 +71,7 @@ void Program::Clean()
 
 void Program::Launch()
 {
+    _logService.SetConfiguration(LogService::LS_PRINT_ON_COUT);
     this->Log(LogService::NOTICE, "Launch");
     
     std::stringstream tmp;
