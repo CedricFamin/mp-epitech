@@ -43,6 +43,11 @@ private:
     
     ICoDF_HTM::HTM *            _htm;
     ICoDF_HTM::HTMAsciiParser * _parser;
+    
+    double _raMin;
+    double _raMax;
+    double _decMin;
+    double _decMax;
 };
 
 

@@ -16,6 +16,10 @@ Program::Program()
 : _logService()
 , _htm(0)
 , _parser(0)
+, _raMin(.0)
+, _raMax(.0)
+, _decMin(.0)
+, _decMax(.0)
 {
     this->Log(LogService::NOTICE, "Create");
 }
@@ -33,6 +37,23 @@ void Program::Init(ProgramConfig const & config)
     
     _htm = new HTM();
     _parser = new HTMAsciiParser(_htm);
+    this->Log(LogService::NOTICE, "Computing Normal Catalog...");
+    
+    _htm->CreateOctahedron();
+    _parser->Parse(this->_config.filename);
+    _htm->GeneratePoint(_parser->getObjects());
+    _htm->CreateHTM();
+    
+    this->Log(LogService::NOTICE, "HTM Created for Normal Catalog");
+    std::stringstream tmp;
+    
+    _raMin = _htm->getMinRa();
+    _raMax = _htm->getMaxRa();
+    _decMin = _htm->getMinDec();
+    _decMax = _htm->getMaxDec();
+    tmp.str("");
+    tmp << "Computing Mean values for Random and Hybrid Catalog on " << this->_config.loop << " loops using " << _parser->getNbObj() << " random objects...";
+    this->Log(LogService::NOTICE, tmp.str());
 }
 
 void Program::Clean()
@@ -47,26 +68,11 @@ void Program::Clean()
 void Program::Launch()
 {
     this->Log(LogService::NOTICE, "Launch");
-    this->Log(LogService::NOTICE, "Computing Normal Catalog...");
     
-    _htm->CreateOctahedron();
-    _parser->Parse(this->_config.filename);
-    _htm->GeneratePoint(_parser->getObjects());
-    _htm->CreateHTM();
-    
-    this->Log(LogService::NOTICE, "HTM Created for Normal Catalog");
-    unsigned int nn = _htm->TwoPointsCorrelation(this->_config.radius, this->_config.delta);
     std::stringstream tmp;
+    unsigned int nn = _htm->TwoPointsCorrelation(this->_config.radius, this->_config.delta);
     tmp.str("");
     tmp << "Two Point Correlation have been computed for the Normal Catalog [" << nn << "] pairs";
-    this->Log(LogService::NOTICE, tmp.str());
-    
-    double raMin = _htm->getMinRa();
-    double raMax = _htm->getMaxRa();
-    double decMin = _htm->getMinDec();
-    double decMax = _htm->getMaxDec();
-    tmp.str("");
-    tmp << "Computing Mean values for Random and Hybrid Catalog on " << this->_config.loop << " loops using " << _parser->getNbObj() << " random objects...";
     this->Log(LogService::NOTICE, tmp.str());
     
     unsigned int rr = 0;
@@ -78,7 +84,7 @@ void Program::Launch()
         this->Log(LogService::NOTICE, tmp.str());
         _htm->DeleteOctahedron();
         _htm->CreateOctahedron();
-        _htm->UniformNumberGenerator(_parser->getNbObj(), raMin, raMax, decMin, decMax);
+        _htm->UniformNumberGenerator(_parser->getNbObj(), _raMin, _raMax, _decMin, _decMax);
         _htm->CreateHTM();
         
         unsigned int currentRR = _htm->TwoPointsCorrelation(this->_config.radius, this->_config.delta);
