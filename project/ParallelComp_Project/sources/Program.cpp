@@ -10,6 +10,7 @@
 
 #include "../includes/Program.h"
 #include "../includes/htm.hpp"
+#include "../includes/WorkerThread.h"
 
 using namespace ICoDF;
 using namespace ICoDF_HTM;
@@ -70,69 +71,6 @@ void Program::Clean()
     _decMin = .0;
     _decMax = .0;
 }
-
-class WorkerThread
-{
-public:
-    WorkerThread() {}
-    ~WorkerThread() {}
-    
-    void Init(ProgramConfig & config, std::vector<std::pair<double, double>> const & objects,
-              double raMin, double raMax, double decMin, double decMax)
-    {
-        _programConfig = config;
-        _objects = objects;
-        _raMin = raMin;
-        _raMax = raMax;
-        _decMin = decMin;
-        _decMax = decMax;
-    }
-    void Launch()
-    {
-        std::stringstream tmp;
-        _htm = new HTM();
-        
-        _htm->CreateOctahedron();
-        _htm->UniformNumberGenerator(_objects.size(), _raMin, _raMax, _decMin, _decMax);
-        _htm->CreateHTM();        
-        _rr = _htm->TwoPointsCorrelation(_programConfig.radius, _programConfig.delta);
-        
-        tmp << "Two POint Correlation have been computed for the Random Catalog [" << _rr << "]";
-        LS_ADDMSG(LogService::NOTICE, "Worker", tmp.str());
-        
-        _htm->GeneratePoint(_objects);
-        _htm->CreateHTM();
-        _nr= _htm->TwoPointsCorrelation(_programConfig.radius, _programConfig.delta);
-        
-        tmp.str("");
-        tmp << "Two POint Correlation have been computed for the Hybrid Catalog [" << _nr << "]";
-        LS_ADDMSG(LogService::NOTICE, "Worker", tmp.str());
-        
-        
-        _htm->DeleteOctahedron();
-        
-        delete _htm;
-        _htm = 0;
-    }
-    void Clean()
-    {
-        
-    }
-    
-    double GetRR() const { return _rr; }
-    double GetNR() const { return _nr; }
-protected:
-private:
-    HTM * _htm;
-    ProgramConfig _programConfig;
-    std::vector<std::pair<double, double>> _objects;
-    double _rr;
-    double _nr;
-    double _raMin;
-    double _raMax;
-    double _decMin;
-    double _decMax;
-};
 
 void Program::Launch()
 {
