@@ -15,14 +15,14 @@ include_directories(${TBB_INCLUDE_DIRS})
 link_directories(${TBB_LIBRARY_DIRS})
 
 # BOOST REQUIREMENTS ---------------------------------------------------------------------
-find_package(Boost REQUIRED)
-if (Boost_FOUND)
-  message("-- Found Boost")
-else ()
-  message(FATAL_ERROR "-- Unable to Find Boost")
-endif()
-include_directories(${Boost_INCLUDE_DIR})
-link_directories(${Boost_LIBRARY_DIRS})
+#find_package(Boost REQUIRED)
+#if (Boost_FOUND)
+#  message("-- Found Boost")
+#else ()
+#  message(FATAL_ERROR "-- Unable to Find Boost")
+#endif()
+#include_directories(${Boost_INCLUDE_DIR})
+#link_directories(${Boost_LIBRARY_DIRS})
 
 # EIGEN REQUIREMENTS ---------------------------------------------------------------------
 find_package(Eigen3 REQUIRED)
