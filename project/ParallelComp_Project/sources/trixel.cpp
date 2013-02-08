@@ -28,7 +28,7 @@ trixel_t** ICoDF_HTM::CreateTrixelChildren(trixel_t *parent)
 // -------------------------------------------------------------------------------
 Eigen::Vector3d* ICoDF_HTM::ComputeTrixelMidpoints(trixel_t* trixel)
 {
-	static Eigen::Vector3d tmp;
+	Eigen::Vector3d tmp;
 	Eigen::Vector3d* midPoints = new Eigen::Vector3d[3];
 	
 	tmp = trixel->_vertices[1] + trixel->_vertices[2];
@@ -72,7 +72,7 @@ trixel_t* ICoDF_HTM::CreateTrixelChild(trixel_t* parent, unsigned short int& ind
 	
 	if (parent->_children[index] == NULL)
     {
-		static std::stringstream tmp;
+		std::stringstream tmp;
 		parent->_children[index] = new trixel_t();
 		InitTrixel(parent->_children[index]);
 		tmp.str("");

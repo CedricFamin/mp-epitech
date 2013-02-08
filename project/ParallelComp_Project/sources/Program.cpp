@@ -6,6 +6,8 @@
 //
 //
 
+#include <thread>
+
 #include "../includes/Program.h"
 #include "../includes/htm.hpp"
 
@@ -21,6 +23,8 @@ Program::Program()
 , _decMin(.0)
 , _decMax(.0)
 {
+    
+    _logService.SetConfiguration(LogService::LS_PRINT_ON_COUT);
     this->Log(LogService::NOTICE, "Create");
 }
 
@@ -59,8 +63,6 @@ void Program::Init(ProgramConfig const & config)
 void Program::Clean()
 {
     this->Log(LogService::NOTICE, "Clean");
-    delete _htm;
-    _htm = 0;
     delete _parser;
     _parser = 0;
     _raMin = .0;
@@ -69,9 +71,71 @@ void Program::Clean()
     _decMax = .0;
 }
 
+class WorkerThread
+{
+public:
+    WorkerThread() {}
+    ~WorkerThread() {}
+    
+    void Init(ProgramConfig & config, std::vector<std::pair<double, double>> const & objects,
+              double raMin, double raMax, double decMin, double decMax)
+    {
+        _programConfig = config;
+        _objects = objects;
+        _raMin = raMin;
+        _raMax = raMax;
+        _decMin = decMin;
+        _decMax = decMax;
+    }
+    void Launch()
+    {
+        std::stringstream tmp;
+        _htm = new HTM();
+        
+        _htm->CreateOctahedron();
+        _htm->UniformNumberGenerator(_objects.size(), _raMin, _raMax, _decMin, _decMax);
+        _htm->CreateHTM();        
+        _rr = _htm->TwoPointsCorrelation(_programConfig.radius, _programConfig.delta);
+        
+        tmp << "Two POint Correlation have been computed for the Random Catalog [" << _rr << "]";
+        LS_ADDMSG(LogService::NOTICE, "Worker", tmp.str());
+        
+        _htm->GeneratePoint(_objects);
+        _htm->CreateHTM();
+        _nr= _htm->TwoPointsCorrelation(_programConfig.radius, _programConfig.delta);
+        
+        tmp.str("");
+        tmp << "Two POint Correlation have been computed for the Hybrid Catalog [" << _nr << "]";
+        LS_ADDMSG(LogService::NOTICE, "Worker", tmp.str());
+        
+        
+        _htm->DeleteOctahedron();
+        
+        delete _htm;
+        _htm = 0;
+    }
+    void Clean()
+    {
+        
+    }
+    
+    double GetRR() const { return _rr; }
+    double GetNR() const { return _nr; }
+protected:
+private:
+    HTM * _htm;
+    ProgramConfig _programConfig;
+    std::vector<std::pair<double, double>> _objects;
+    double _rr;
+    double _nr;
+    double _raMin;
+    double _raMax;
+    double _decMin;
+    double _decMax;
+};
+
 void Program::Launch()
 {
-    _logService.SetConfiguration(LogService::LS_PRINT_ON_COUT);
     this->Log(LogService::NOTICE, "Launch");
     
     std::stringstream tmp;
@@ -82,31 +146,52 @@ void Program::Launch()
     
     unsigned int rr = 0;
     unsigned int nr = 0;
-    for (int i = 0; i != this->_config.loop; ++i)
+    
+    _htm->DeleteOctahedron();
+    delete _htm;
+    _htm = 0;
+    
+    std::vector<std::pair<std::thread*, WorkerThread*>> workerList;
+    for (int i = 0; i < this->_config.loop; ++i)
+    {
+        WorkerThread * worker = new WorkerThread();
+        worker->Init(_config, _parser->getObjects(), _raMin, _raMax, _decMin, _decMax);
+        
+        std::thread * thread = new std::thread(&WorkerThread::Launch, worker);
+        workerList.push_back(std::make_pair(thread, worker));
+    }
+    
+    unsigned int i = 0;
+    for (std::pair<std::thread*, WorkerThread*> & worker : workerList)
     {
         tmp.str("");
-        tmp << "Computing loop " << i + 1 << " on " << this->_config.loop;
+        tmp << "Join the thread" << worker.first->get_id();
         this->Log(LogService::NOTICE, tmp.str());
-        _htm->DeleteOctahedron();
-        _htm->CreateOctahedron();
-        _htm->UniformNumberGenerator(_parser->getNbObj(), _raMin, _raMax, _decMin, _decMax);
-        _htm->CreateHTM();
         
-        unsigned int currentRR = _htm->TwoPointsCorrelation(this->_config.radius, this->_config.delta);
+        if (worker.first->joinable())
+            worker.first->join();
+        
+        this->Log(LogService::NOTICE, "Done.");
+        worker.second->Clean();
+        
+        unsigned int currentRR = worker.second->GetRR();
         rr += currentRR;
         tmp.str("");
         tmp << "Two POint Correlation have been computed for the Random Catalog [" << currentRR << "] mean [" << (rr / (i + 1)) << "]";
         
         this->Log(LogService::NOTICE, tmp.str());
         
-        _htm->GeneratePoint(_parser->getObjects());
-        _htm->CreateHTM();
-        unsigned int currentNR = _htm->TwoPointsCorrelation(this->_config.radius, this->_config.delta);
+        unsigned int currentNR = worker.second->GetNR();
         nr += currentNR;
         tmp.str("");
         tmp << "Two POint Correlation have been computed for the Hybrid Catalog [" << currentNR << "] mean [" << (nr / (i + 1)) << "]";
         this->Log(LogService::NOTICE, tmp.str());
+        delete worker.first;
+        delete worker.second;
+        
+        ++i;
     }
+    
     
     this->Log(LogService::NOTICE, "...Done !");
     
@@ -125,5 +210,6 @@ void Program::Launch()
 
 void Program::Log(unsigned int level, std::string const & message)
 {
-    _logService.AddMessage(level, "Program", message);
+    LS_ADDMSG(level, "Program", message);
+    //_logService.AddMessage(level, "Program", message);
 }

@@ -7,24 +7,24 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		0B27A7FBBAF5466E9A487A1E /* ALL_BUILD */ = {
+		5C8F491019F9415DB2A42CC3 /* ALL_BUILD */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 92714E8625CA4CDA9644834A /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildConfigurationList = 11DACFDCE4184CF3B7B87E96 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
 			buildPhases = (
-				BC3A1085473D404D84B0E982 /* CMake Rules */,
+				B7688F9584C446929233B0EC /* CMake Rules */,
 			);
 			dependencies = (
-				844FF3810E9245629E3A1069 /* PBXTargetDependency */,
-				D6660464748D40F694C1A994 /* PBXTargetDependency */,
+				15E090E12D3E4E00AA778F4F /* PBXTargetDependency */,
+				819155FFB8634DF7B860057C /* PBXTargetDependency */,
 			);
 			name = ALL_BUILD;
 			productName = ALL_BUILD;
 		};
-		195E7B3D270A4F92BDBA9C01 /* ZERO_CHECK */ = {
+		C7CD0AA12FE149DF8E574CB0 /* ZERO_CHECK */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 864AFC9AB6CA4DB78D1EA5A1 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildConfigurationList = 582E2D074C7149C3BFCE589F /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
 			buildPhases = (
-				A11A7E0E872A4CABABF5A7D2 /* CMake Rules */,
+				77431EC6ACFE4485902B89D8 /* CMake Rules */,
 			);
 			dependencies = (
 			);
@@ -34,205 +34,205 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		2ECFD07E16BC197A007C9FF9 /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2ECFD07D16BC197A007C9FF9 /* Program.cpp */; };
-		B009E8DA2C824E6DBD008F63 /* trixel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBABF92BA98943329057D130 /* trixel.cpp */; settings = {COMPILER_FLAGS = ""; }; };
-		BCBB0E726F92486AAE429FF3 /* htm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A872C48FA4C4432B8B198E3 /* htm.cpp */; settings = {COMPILER_FLAGS = ""; }; };
-		C4CC8F54367E4FB0A8F66B5D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FE30AB0191EA427FA5639ABA /* main.cpp */; settings = {COMPILER_FLAGS = ""; }; };
-		DCFC100D86034C80878F018C /* logservice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78970DBCB0C14C46A637EB8A /* logservice.cpp */; settings = {COMPILER_FLAGS = ""; }; };
-		F157A2A2DBC54E8AB22C60D0 /* htmasciiparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECAC2156AFE74D6581D52A79 /* htmasciiparser.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		05D35D8078954BE59E2DF700 /* logservice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 953BFAB5AC614899BE510914 /* logservice.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		10E23D1DCA1D4B9DAB4BDAFE /* trixel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 779259C1FFE747C3A6433B35 /* trixel.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		65BA2A54FF0147F1A9B4E743 /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82416C487902402AAD5A31B0 /* Program.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		B1096D9D613D4A60AF1F2FA0 /* htm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E19BC344BA55411E818CA4ED /* htm.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		BD2EA6BD2E7344539C268EBC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91FC75B706C0416CB51E413B /* main.cpp */; settings = {COMPILER_FLAGS = ""; }; };
+		C918405D895A485DB5608B9F /* htmasciiparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40DD18610F09478FA4EDB413 /* htmasciiparser.cpp */; settings = {COMPILER_FLAGS = ""; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2276ED5945094500AD96EB3C /* PBXContainerItemProxy */ = {
+		34EB3FB0AAC64226AD6D66B6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0D8447EDF1C045C2876DD37D /* Project object */;
+			containerPortal = 5234271762114650925A44A8 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E4AF0194CFA94743A9EC7DD5;
+			remoteGlobalIDString = C8186E09241E4FDEA9C8DA13;
 			remoteInfo = LandySzalayEstimator;
 		};
-		6CB5DBFBBBC6413283128FEB /* PBXContainerItemProxy */ = {
+		F90A6B9850F4496CAA4D076C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0D8447EDF1C045C2876DD37D /* Project object */;
+			containerPortal = 5234271762114650925A44A8 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 195E7B3D270A4F92BDBA9C01;
+			remoteGlobalIDString = C7CD0AA12FE149DF8E574CB0;
 			remoteInfo = ZERO_CHECK;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		16826B946E34438391864AC8 /* htmconstraint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = htmconstraint.hpp; path = includes/htmconstraint.hpp; sourceTree = SOURCE_ROOT; };
-		170BAD3F9215437492B490D4 /* logservice.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = logservice.hpp; path = includes/logservice.hpp; sourceTree = SOURCE_ROOT; };
-		29C52D109EFB46F9BEFB0BE3 /* main.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = main.hpp; path = includes/main.hpp; sourceTree = SOURCE_ROOT; };
-		2A872C48FA4C4432B8B198E3 /* htm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = htm.cpp; path = sources/htm.cpp; sourceTree = SOURCE_ROOT; };
-		2ECFD07C16BC196D007C9FF9 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Program.h; path = includes/Program.h; sourceTree = "<group>"; };
-		2ECFD07D16BC197A007C9FF9 /* Program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Program.cpp; path = sources/Program.cpp; sourceTree = "<group>"; };
-		430FFBCB0039469BB421CE9E /* trixel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = trixel.hpp; path = includes/trixel.hpp; sourceTree = SOURCE_ROOT; };
-		54BD93DFC842410CAB095B6E /* pointinfo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = pointinfo.hpp; path = includes/pointinfo.hpp; sourceTree = SOURCE_ROOT; };
-		78970DBCB0C14C46A637EB8A /* logservice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = logservice.cpp; path = sources/logservice.cpp; sourceTree = SOURCE_ROOT; };
-		7FC145F2B4E94646A7A02603 /* htm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = htm.hpp; path = includes/htm.hpp; sourceTree = SOURCE_ROOT; };
-		8509C7BAF3924FA4BBC035CE /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
-		969C92C5B34741D09E1F4898 /* htmasciiparser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = htmasciiparser.hpp; path = includes/htmasciiparser.hpp; sourceTree = SOURCE_ROOT; };
-		CBABF92BA98943329057D130 /* trixel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = trixel.cpp; path = sources/trixel.cpp; sourceTree = SOURCE_ROOT; };
-		E599ADAF983D44CCB92AF63A /* octahedron.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = octahedron.hpp; path = includes/octahedron.hpp; sourceTree = SOURCE_ROOT; };
-		ECAC2156AFE74D6581D52A79 /* htmasciiparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = htmasciiparser.cpp; path = sources/htmasciiparser.cpp; sourceTree = SOURCE_ROOT; };
-		F941619BB1BB4117A74EBA03 /* LandySzalayEstimator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = LandySzalayEstimator; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE30AB0191EA427FA5639ABA /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = sources/main.cpp; sourceTree = SOURCE_ROOT; };
+		002C208D460A446AADC0CF69 /* trixel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = trixel.hpp; path = includes/trixel.hpp; sourceTree = SOURCE_ROOT; };
+		13051F1FF6574E649FA78D5E /* pointinfo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = pointinfo.hpp; path = includes/pointinfo.hpp; sourceTree = SOURCE_ROOT; };
+		277BEC0A964248CD83DC92C2 /* LandySzalayEstimator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = LandySzalayEstimator; sourceTree = BUILT_PRODUCTS_DIR; };
+		40DD18610F09478FA4EDB413 /* htmasciiparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = htmasciiparser.cpp; path = sources/htmasciiparser.cpp; sourceTree = SOURCE_ROOT; };
+		51C3E21CC8B1495FB12EF4E9 /* logservice.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = logservice.hpp; path = includes/logservice.hpp; sourceTree = SOURCE_ROOT; };
+		56ECC01196974FA9AEB64F46 /* main.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = main.hpp; path = includes/main.hpp; sourceTree = SOURCE_ROOT; };
+		590A24D0FD564F08AD5B3220 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Program.h; path = includes/Program.h; sourceTree = SOURCE_ROOT; };
+		6ABD3F5E3DF14B418DD78C1D /* htmasciiparser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = htmasciiparser.hpp; path = includes/htmasciiparser.hpp; sourceTree = SOURCE_ROOT; };
+		779259C1FFE747C3A6433B35 /* trixel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = trixel.cpp; path = sources/trixel.cpp; sourceTree = SOURCE_ROOT; };
+		82416C487902402AAD5A31B0 /* Program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Program.cpp; path = sources/Program.cpp; sourceTree = SOURCE_ROOT; };
+		91FC75B706C0416CB51E413B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = sources/main.cpp; sourceTree = SOURCE_ROOT; };
+		953BFAB5AC614899BE510914 /* logservice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = logservice.cpp; path = sources/logservice.cpp; sourceTree = SOURCE_ROOT; };
+		A03AA12B2EBD4ABE8A4F445D /* octahedron.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = octahedron.hpp; path = includes/octahedron.hpp; sourceTree = SOURCE_ROOT; };
+		DDC23626DF854AA083FB6C25 /* htm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = htm.hpp; path = includes/htm.hpp; sourceTree = SOURCE_ROOT; };
+		E19BC344BA55411E818CA4ED /* htm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = htm.cpp; path = sources/htm.cpp; sourceTree = SOURCE_ROOT; };
+		E7D1F63611FB4B2D9626642D /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		FB724DF7309447ACACEB5FAB /* htmconstraint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = htmconstraint.hpp; path = includes/htmconstraint.hpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		100665A5FB8242C49C5F099A /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				EDBC57A1722F4D819E9D1AFB /* ALL_BUILD */,
-				80CC533382C04C3E85CF7FBE /* LandySzalayEstimator */,
-				D90F7DD3B46D432EB3AE0A74 /* ZERO_CHECK */,
-			);
-			name = Sources;
-			sourceTree = "<group>";
-		};
-		1C41B9876C374F80B06F3BAD /* Resources */ = {
+		0702C53598CD4B37973D0885 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		4022522E00C144529308AA5A /* CMake Rules */ = {
+		39E284BB6DC844BB97AC241C /* ALL_BUILD */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			name = "CMake Rules";
-			sourceTree = "<group>";
-		};
-		5DA80A5B20654BE590887935 /* Source Files */ = {
-			isa = PBXGroup;
-			children = (
-				2ECFD07D16BC197A007C9FF9 /* Program.cpp */,
-				2A872C48FA4C4432B8B198E3 /* htm.cpp */,
-				ECAC2156AFE74D6581D52A79 /* htmasciiparser.cpp */,
-				78970DBCB0C14C46A637EB8A /* logservice.cpp */,
-				FE30AB0191EA427FA5639ABA /* main.cpp */,
-				CBABF92BA98943329057D130 /* trixel.cpp */,
-			);
-			name = "Source Files";
-			sourceTree = "<group>";
-		};
-		80CC533382C04C3E85CF7FBE /* LandySzalayEstimator */ = {
-			isa = PBXGroup;
-			children = (
-				5DA80A5B20654BE590887935 /* Source Files */,
-				EE3C5D7F7412404284999A4B /* Header Files */,
-				8509C7BAF3924FA4BBC035CE /* CMakeLists.txt */,
-			);
-			name = LandySzalayEstimator;
-			sourceTree = "<group>";
-		};
-		87BDC97DFDB9467F8B98B788 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F941619BB1BB4117A74EBA03 /* LandySzalayEstimator */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		908624135F9D4613B694E973 = {
-			isa = PBXGroup;
-			children = (
-				100665A5FB8242C49C5F099A /* Sources */,
-				1C41B9876C374F80B06F3BAD /* Resources */,
-				87BDC97DFDB9467F8B98B788 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		C94ABE0554C948CE982E9BC6 /* CMake Rules */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "CMake Rules";
-			sourceTree = "<group>";
-		};
-		D90F7DD3B46D432EB3AE0A74 /* ZERO_CHECK */ = {
-			isa = PBXGroup;
-			children = (
-				C94ABE0554C948CE982E9BC6 /* CMake Rules */,
-				8509C7BAF3924FA4BBC035CE /* CMakeLists.txt */,
-			);
-			name = ZERO_CHECK;
-			sourceTree = "<group>";
-		};
-		EDBC57A1722F4D819E9D1AFB /* ALL_BUILD */ = {
-			isa = PBXGroup;
-			children = (
-				4022522E00C144529308AA5A /* CMake Rules */,
-				8509C7BAF3924FA4BBC035CE /* CMakeLists.txt */,
+				F826174CED994F5DA20CDD3A /* CMake Rules */,
+				E7D1F63611FB4B2D9626642D /* CMakeLists.txt */,
 			);
 			name = ALL_BUILD;
 			sourceTree = "<group>";
 		};
-		EE3C5D7F7412404284999A4B /* Header Files */ = {
+		413107452926457B8C7B9285 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				2ECFD07C16BC196D007C9FF9 /* Program.h */,
-				7FC145F2B4E94646A7A02603 /* htm.hpp */,
-				969C92C5B34741D09E1F4898 /* htmasciiparser.hpp */,
-				16826B946E34438391864AC8 /* htmconstraint.hpp */,
-				170BAD3F9215437492B490D4 /* logservice.hpp */,
-				29C52D109EFB46F9BEFB0BE3 /* main.hpp */,
-				E599ADAF983D44CCB92AF63A /* octahedron.hpp */,
-				54BD93DFC842410CAB095B6E /* pointinfo.hpp */,
-				430FFBCB0039469BB421CE9E /* trixel.hpp */,
+				39E284BB6DC844BB97AC241C /* ALL_BUILD */,
+				A461842770A04E8D9E20E246 /* LandySzalayEstimator */,
+				BEFAF569CC8943D08A2C0DBE /* ZERO_CHECK */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		5B9C2561E60F4C789DAA815D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				277BEC0A964248CD83DC92C2 /* LandySzalayEstimator */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		66E3822D613244298F97754E = {
+			isa = PBXGroup;
+			children = (
+				413107452926457B8C7B9285 /* Sources */,
+				0702C53598CD4B37973D0885 /* Resources */,
+				5B9C2561E60F4C789DAA815D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		821597E6C7EB4FEF9E4D0D7F /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				E19BC344BA55411E818CA4ED /* htm.cpp */,
+				40DD18610F09478FA4EDB413 /* htmasciiparser.cpp */,
+				953BFAB5AC614899BE510914 /* logservice.cpp */,
+				91FC75B706C0416CB51E413B /* main.cpp */,
+				82416C487902402AAD5A31B0 /* Program.cpp */,
+				779259C1FFE747C3A6433B35 /* trixel.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		96AAC5126DCD405DA9E09639 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		A461842770A04E8D9E20E246 /* LandySzalayEstimator */ = {
+			isa = PBXGroup;
+			children = (
+				821597E6C7EB4FEF9E4D0D7F /* Source Files */,
+				C7EC9560078D4B62B2D98588 /* Header Files */,
+				E7D1F63611FB4B2D9626642D /* CMakeLists.txt */,
+			);
+			name = LandySzalayEstimator;
+			sourceTree = "<group>";
+		};
+		BEFAF569CC8943D08A2C0DBE /* ZERO_CHECK */ = {
+			isa = PBXGroup;
+			children = (
+				96AAC5126DCD405DA9E09639 /* CMake Rules */,
+				E7D1F63611FB4B2D9626642D /* CMakeLists.txt */,
+			);
+			name = ZERO_CHECK;
+			sourceTree = "<group>";
+		};
+		C7EC9560078D4B62B2D98588 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				DDC23626DF854AA083FB6C25 /* htm.hpp */,
+				6ABD3F5E3DF14B418DD78C1D /* htmasciiparser.hpp */,
+				FB724DF7309447ACACEB5FAB /* htmconstraint.hpp */,
+				51C3E21CC8B1495FB12EF4E9 /* logservice.hpp */,
+				56ECC01196974FA9AEB64F46 /* main.hpp */,
+				A03AA12B2EBD4ABE8A4F445D /* octahedron.hpp */,
+				13051F1FF6574E649FA78D5E /* pointinfo.hpp */,
+				590A24D0FD564F08AD5B3220 /* Program.h */,
+				002C208D460A446AADC0CF69 /* trixel.hpp */,
 			);
 			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		F826174CED994F5DA20CDD3A /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E4AF0194CFA94743A9EC7DD5 /* LandySzalayEstimator */ = {
+		C8186E09241E4FDEA9C8DA13 /* LandySzalayEstimator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5684348A016C4957AC337CA4 /* Build configuration list for PBXNativeTarget "LandySzalayEstimator" */;
+			buildConfigurationList = E7442E0544F44525AC228E1B /* Build configuration list for PBXNativeTarget "LandySzalayEstimator" */;
 			buildPhases = (
-				D0BB622910D742CE8C93A6B8 /* Sources */,
-				F95619D6534E425B8F6371FC /* CMake PostBuild Rules */,
+				F1B9831407434CA8BECF667F /* Sources */,
+				77A2B2F4FBF74408AD05DDB6 /* CMake PostBuild Rules */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				844FF3810E9245629E3A1069 /* PBXTargetDependency */,
+				819155FFB8634DF7B860057C /* PBXTargetDependency */,
 			);
 			name = LandySzalayEstimator;
 			productName = LandySzalayEstimator;
-			productReference = F941619BB1BB4117A74EBA03 /* LandySzalayEstimator */;
+			productReference = 277BEC0A964248CD83DC92C2 /* LandySzalayEstimator */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0D8447EDF1C045C2876DD37D /* Project object */ = {
+		5234271762114650925A44A8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 			};
-			buildConfigurationList = 24AA7B645FC646E6A3063396 /* Build configuration list for PBXProject "LandySzalayEstimator" */;
+			buildConfigurationList = 4997907F0DAC49E486B4E737 /* Build configuration list for PBXProject "LandySzalayEstimator" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 908624135F9D4613B694E973;
+			mainGroup = 66E3822D613244298F97754E;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0B27A7FBBAF5466E9A487A1E /* ALL_BUILD */,
-				E4AF0194CFA94743A9EC7DD5 /* LandySzalayEstimator */,
-				195E7B3D270A4F92BDBA9C01 /* ZERO_CHECK */,
+				5C8F491019F9415DB2A42CC3 /* ALL_BUILD */,
+				C8186E09241E4FDEA9C8DA13 /* LandySzalayEstimator */,
+				C7CD0AA12FE149DF8E574CB0 /* ZERO_CHECK */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A11A7E0E872A4CABABF5A7D2 /* CMake Rules */ = {
+		77431EC6ACFE4485902B89D8 /* CMake Rules */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -240,21 +240,10 @@
 			name = "CMake Rules";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "make -C /Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project -f /Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			shellScript = "make -C /Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project -f /Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
 			showEnvVarsInLog = 0;
 		};
-		BC3A1085473D404D84B0E982 /* CMake Rules */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			name = "CMake Rules";
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "make -C /Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project -f /Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
-			showEnvVarsInLog = 0;
-		};
-		F95619D6534E425B8F6371FC /* CMake PostBuild Rules */ = {
+		77A2B2F4FBF74408AD05DDB6 /* CMake PostBuild Rules */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -262,42 +251,53 @@
 			name = "CMake PostBuild Rules";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "make -C /Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project -f /Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project/CMakeScripts/LandySzalayEstimator_postBuildPhase.make$CONFIGURATION all";
+			shellScript = "make -C /Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project -f /Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project/CMakeScripts/LandySzalayEstimator_postBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		B7688F9584C446929233B0EC /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project -f /Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D0BB622910D742CE8C93A6B8 /* Sources */ = {
+		F1B9831407434CA8BECF667F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCBB0E726F92486AAE429FF3 /* htm.cpp in Sources */,
-				F157A2A2DBC54E8AB22C60D0 /* htmasciiparser.cpp in Sources */,
-				DCFC100D86034C80878F018C /* logservice.cpp in Sources */,
-				C4CC8F54367E4FB0A8F66B5D /* main.cpp in Sources */,
-				B009E8DA2C824E6DBD008F63 /* trixel.cpp in Sources */,
-				2ECFD07E16BC197A007C9FF9 /* Program.cpp in Sources */,
+				B1096D9D613D4A60AF1F2FA0 /* htm.cpp in Sources */,
+				C918405D895A485DB5608B9F /* htmasciiparser.cpp in Sources */,
+				05D35D8078954BE59E2DF700 /* logservice.cpp in Sources */,
+				BD2EA6BD2E7344539C268EBC /* main.cpp in Sources */,
+				65BA2A54FF0147F1A9B4E743 /* Program.cpp in Sources */,
+				10E23D1DCA1D4B9DAB4BDAFE /* trixel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		844FF3810E9245629E3A1069 /* PBXTargetDependency */ = {
+		15E090E12D3E4E00AA778F4F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 195E7B3D270A4F92BDBA9C01 /* ZERO_CHECK */;
-			targetProxy = 6CB5DBFBBBC6413283128FEB /* PBXContainerItemProxy */;
+			target = C8186E09241E4FDEA9C8DA13 /* LandySzalayEstimator */;
+			targetProxy = 34EB3FB0AAC64226AD6D66B6 /* PBXContainerItemProxy */;
 		};
-		D6660464748D40F694C1A994 /* PBXTargetDependency */ = {
+		819155FFB8634DF7B860057C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E4AF0194CFA94743A9EC7DD5 /* LandySzalayEstimator */;
-			targetProxy = 2276ED5945094500AD96EB3C /* PBXContainerItemProxy */;
+			target = C7CD0AA12FE149DF8E574CB0 /* ZERO_CHECK */;
+			targetProxy = F90A6B9850F4496CAA4D076C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		20F6E64985E84A9CA2261C06 /* RelWithDebInfo */ = {
+		01FC2D7AD6AD487D9A3302CB /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -310,193 +310,14 @@
 					/opt/local/include/eigen3,
 				);
 				INSTALL_PATH = "";
-				OTHER_CFLAGS = "-std=gnu++0x";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = RelWithDebInfo;
-		};
-		26DA3EA1FC014D45977720F8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (
-					/opt/local/include,
-					/opt/local/include/eigen3,
-				);
-				INSTALL_PATH = "";
-				OTHER_CFLAGS = "-std=gnu++0x";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Debug;
-		};
-		2992354DF5C6467EBC09281E /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (
-					/opt/local/include,
-					/opt/local/include/eigen3,
-				);
-				INSTALL_PATH = "";
-				OTHER_CFLAGS = "-std=gnu++0x";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = MinSizeRel;
-		};
-		3E6CE5B1A2144058867BE5D8 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk;
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project/build";
-			};
-			name = RelWithDebInfo;
-		};
-		40A026BC64854ECC8AF86392 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (
-					/opt/local/include,
-					/opt/local/include/eigen3,
-				);
-				INSTALL_PATH = "";
-				OTHER_CFLAGS = "-std=gnu++0x";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = RelWithDebInfo;
-		};
-		4ED2F0A4F4794426828DF4F7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk;
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project/build";
-			};
-			name = Debug;
-		};
-		5DD132014731424A8176A331 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (
-					/opt/local/include,
-					/opt/local/include/eigen3,
-				);
-				INSTALL_PATH = "";
-				OTHER_CFLAGS = "-std=gnu++0x";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Release;
-		};
-		7B3AB21FED0F400DA0DB6CF1 /* RelWithDebInfo */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "libc++";
-				CONFIGURATION_BUILD_DIR = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project/bin/RelWithDebInfo";
-				EXECUTABLE_PREFIX = "";
-				EXECUTABLE_SUFFIX = "";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 2;
-				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (
-					/opt/local/include,
-					/opt/local/include/eigen3,
-				);
-				INSTALL_PATH = "";
-				LIBRARY_SEARCH_PATHS = (
-					"/opt/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)",
-					/opt/local/lib,
-				);
 				OTHER_CFLAGS = (
-					"-DNDEBUG",
 					"-std=gnu++0x",
 				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-DNDEBUG",
-					"-std=gnu++0x",
-				);
-				OTHER_LDFLAGS = (
-					"-Wl,-search_paths_first",
-					"-Wl,-headerpad_max_install_names",
-					/opt/local/lib/libtbb.dylib,
-					/opt/local/lib/libtbbmalloc.dylib,
-				);
+				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = LandySzalayEstimator;
+				PRODUCT_NAME = ALL_BUILD;
 				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project";
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -504,19 +325,9 @@
 					"-Wno-unknown-pragmas",
 				);
 			};
-			name = RelWithDebInfo;
-		};
-		80420E7580BD4A4C803364A9 /* MinSizeRel */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk;
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project/build";
-			};
 			name = MinSizeRel;
 		};
-		8183D0C848B14FB3998AB933 /* Debug */ = {
+		1A8185A66C634701A13CEBD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -529,12 +340,14 @@
 					/opt/local/include/eigen3,
 				);
 				INSTALL_PATH = "";
-				OTHER_CFLAGS = "-std=gnu++0x";
+				OTHER_CFLAGS = (
+					"-std=gnu++0x",
+				);
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
+				PRODUCT_NAME = ZERO_CHECK;
 				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project";
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -544,7 +357,7 @@
 			};
 			name = Debug;
 		};
-		873004D37DB2436EB2DBD229 /* MinSizeRel */ = {
+		25C2FDE681254E3599B6E045 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -557,12 +370,14 @@
 					/opt/local/include/eigen3,
 				);
 				INSTALL_PATH = "";
-				OTHER_CFLAGS = "-std=gnu++0x";
+				OTHER_CFLAGS = (
+					"-std=gnu++0x",
+				);
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ALL_BUILD;
+				PRODUCT_NAME = ZERO_CHECK;
 				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project";
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -572,12 +387,73 @@
 			};
 			name = MinSizeRel;
 		};
-		C02F5AA736AE4F53AB737EFB /* Release */ = {
+		26A99D828A6043CBB68B61E6 /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					/opt/local/include/eigen3,
+				);
+				INSTALL_PATH = "";
+				OTHER_CFLAGS = (
+					"-std=gnu++0x",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = RelWithDebInfo;
+		};
+		2F36DD40B5C643E8B530DDFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					/opt/local/include/eigen3,
+				);
+				INSTALL_PATH = "";
+				OTHER_CFLAGS = (
+					"-std=gnu++0x",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Debug;
+		};
+		357F3B1898C04E818BB22BB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CONFIGURATION_BUILD_DIR = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project/bin/Release";
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
+				CONFIGURATION_BUILD_DIR = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project/bin/Release";
 				EXECUTABLE_PREFIX = "";
 				EXECUTABLE_SUFFIX = "";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -585,6 +461,7 @@
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					/opt/local/include/eigen3,
@@ -611,7 +488,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = LandySzalayEstimator;
 				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project";
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -621,57 +498,41 @@
 			};
 			name = Release;
 		};
-		D79F48D1A1DA4513AA82885C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (
-					/opt/local/include,
-					/opt/local/include/eigen3,
-				);
-				INSTALL_PATH = "";
-				OTHER_CFLAGS = "-std=gnu++0x";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ZERO_CHECK;
-				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project";
-				USE_HEADERMAP = NO;
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Release;
-		};
-		E04881C414C444C488B167F5 /* Release */ = {
+		6A10A740BBC0426BB2AA51A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk;
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project/build";
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project/build";
 			};
 			name = Release;
 		};
-		E93BAA8B681E4DED9A4246A1 /* Debug */ = {
+		87A8005983284B03B956A3A1 /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk;
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project/build";
+			};
+			name = MinSizeRel;
+		};
+		893AFB9F111C424BA2A885D7 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CONFIGURATION_BUILD_DIR = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project/bin/Debug";
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
+				CONFIGURATION_BUILD_DIR = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project/bin/Debug/RelWithDebInfo";
 				EXECUTABLE_PREFIX = "";
 				EXECUTABLE_SUFFIX = "";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					/opt/local/include/eigen3,
@@ -681,8 +542,14 @@
 					"/opt/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)",
 					/opt/local/lib,
 				);
-				OTHER_CFLAGS = "-std=gnu++0x";
-				OTHER_CPLUSPLUSFLAGS = "-std=gnu++0x";
+				OTHER_CFLAGS = (
+					"-DNDEBUG",
+					"-std=gnu++0x",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNDEBUG",
+					"-std=gnu++0x",
+				);
 				OTHER_LDFLAGS = (
 					"-Wl,-search_paths_first",
 					"-Wl,-headerpad_max_install_names",
@@ -692,7 +559,66 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = LandySzalayEstimator;
 				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project";
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = RelWithDebInfo;
+		};
+		9CFB1A1B5AFC4544B0E918C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk;
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project/build";
+			};
+			name = Debug;
+		};
+		ACEE2ECF16FA4B6ABBE9510E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
+				CONFIGURATION_BUILD_DIR = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project/bin/Debug/";
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					/opt/local/include/eigen3,
+				);
+				INSTALL_PATH = "";
+				LIBRARY_SEARCH_PATHS = (
+					"/opt/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)",
+					/opt/local/lib,
+				);
+				OTHER_CFLAGS = (
+					"-std=gnu++0x",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-std=gnu++0x",
+				);
+				OTHER_LDFLAGS = (
+					"-Wl,-search_paths_first",
+					"-Wl,-headerpad_max_install_names",
+					/opt/local/lib/libtbb.dylib,
+					/opt/local/lib/libtbbmalloc.dylib,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = LandySzalayEstimator;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -702,12 +628,13 @@
 			};
 			name = Debug;
 		};
-		EE4DCCFB46C4477E99713CEA /* MinSizeRel */ = {
+		C4CFCCDDB18843F4B648FFBC /* MinSizeRel */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CONFIGURATION_BUILD_DIR = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project/bin/MinSizeRel";
+				CLANG_WARN_CXX0X_EXTENSIONS = NO;
+				CONFIGURATION_BUILD_DIR = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project/bin/Debug/MinSizeRel";
 				EXECUTABLE_PREFIX = "";
 				EXECUTABLE_SUFFIX = "";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -715,6 +642,7 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					/opt/local/include/eigen3,
@@ -741,7 +669,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = LandySzalayEstimator;
 				SECTORDER_FLAGS = "";
-				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project-base/ParallelComp_Project";
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -751,54 +679,154 @@
 			};
 			name = MinSizeRel;
 		};
+		D40F6EC68420400EA9CC5FB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					/opt/local/include/eigen3,
+				);
+				INSTALL_PATH = "";
+				OTHER_CFLAGS = (
+					"-std=gnu++0x",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Release;
+		};
+		D4E2707369B64E7B9E524232 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk;
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project/build";
+			};
+			name = RelWithDebInfo;
+		};
+		DD0165AEB8D64EE0B5D88FB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					/opt/local/include/eigen3,
+				);
+				INSTALL_PATH = "";
+				OTHER_CFLAGS = (
+					"-std=gnu++0x",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Release;
+		};
+		E9C48409562D43D48702F9F1 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					/opt/local/include/eigen3,
+				);
+				INSTALL_PATH = "";
+				OTHER_CFLAGS = (
+					"-std=gnu++0x",
+				);
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/Pamilator/Work/mp-epitech/project/ParallelComp_Project";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = RelWithDebInfo;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		24AA7B645FC646E6A3063396 /* Build configuration list for PBXProject "LandySzalayEstimator" */ = {
+		11DACFDCE4184CF3B7B87E96 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4ED2F0A4F4794426828DF4F7 /* Debug */,
-				E04881C414C444C488B167F5 /* Release */,
-				80420E7580BD4A4C803364A9 /* MinSizeRel */,
-				3E6CE5B1A2144058867BE5D8 /* RelWithDebInfo */,
+				2F36DD40B5C643E8B530DDFC /* Debug */,
+				DD0165AEB8D64EE0B5D88FB5 /* Release */,
+				01FC2D7AD6AD487D9A3302CB /* MinSizeRel */,
+				26A99D828A6043CBB68B61E6 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		5684348A016C4957AC337CA4 /* Build configuration list for PBXNativeTarget "LandySzalayEstimator" */ = {
+		4997907F0DAC49E486B4E737 /* Build configuration list for PBXProject "LandySzalayEstimator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E93BAA8B681E4DED9A4246A1 /* Debug */,
-				C02F5AA736AE4F53AB737EFB /* Release */,
-				EE4DCCFB46C4477E99713CEA /* MinSizeRel */,
-				7B3AB21FED0F400DA0DB6CF1 /* RelWithDebInfo */,
+				9CFB1A1B5AFC4544B0E918C5 /* Debug */,
+				6A10A740BBC0426BB2AA51A7 /* Release */,
+				87A8005983284B03B956A3A1 /* MinSizeRel */,
+				D4E2707369B64E7B9E524232 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		864AFC9AB6CA4DB78D1EA5A1 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+		582E2D074C7149C3BFCE589F /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				26DA3EA1FC014D45977720F8 /* Debug */,
-				D79F48D1A1DA4513AA82885C /* Release */,
-				2992354DF5C6467EBC09281E /* MinSizeRel */,
-				40A026BC64854ECC8AF86392 /* RelWithDebInfo */,
+				1A8185A66C634701A13CEBD5 /* Debug */,
+				D40F6EC68420400EA9CC5FB8 /* Release */,
+				25C2FDE681254E3599B6E045 /* MinSizeRel */,
+				E9C48409562D43D48702F9F1 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		92714E8625CA4CDA9644834A /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+		E7442E0544F44525AC228E1B /* Build configuration list for PBXNativeTarget "LandySzalayEstimator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8183D0C848B14FB3998AB933 /* Debug */,
-				5DD132014731424A8176A331 /* Release */,
-				873004D37DB2436EB2DBD229 /* MinSizeRel */,
-				20F6E64985E84A9CA2261C06 /* RelWithDebInfo */,
+				ACEE2ECF16FA4B6ABBE9510E /* Debug */,
+				357F3B1898C04E818BB22BB4 /* Release */,
+				C4CFCCDDB18843F4B648FFBC /* MinSizeRel */,
+				893AFB9F111C424BA2A885D7 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 0D8447EDF1C045C2876DD37D /* Project object */;
+	rootObject = 5234271762114650925A44A8 /* Project object */;
 }
