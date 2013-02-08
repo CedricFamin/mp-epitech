@@ -100,7 +100,7 @@ double ICoDF_HTM::HTM::getMinDec(void)
 
 double ICoDF_HTM::HTM::getMaxRa(void)
 {
-	double raMax;
+	double raMax = 0;
 	while (!this->_raQueue.empty())
     {
 		raMax = this->_raQueue.top();
@@ -111,7 +111,7 @@ double ICoDF_HTM::HTM::getMaxRa(void)
 
 double ICoDF_HTM::HTM::getMaxDec(void)
 {
-	double decMax;
+	double decMax = 0;
 	while (!this->_decQueue.empty())
     {
 		decMax = this->_decQueue.top();
@@ -140,8 +140,7 @@ HTMConstraint_t* ICoDF_HTM::HTM::SetConstraint(PointInfo_t* pt, double& radius)
 			double z = cos(90 - abs(pt->_dec));
 			Eigen::Vector3d p(x, y, z);
 			constraint = new HTMConstraint_t;
-			static std::queue<trixel_t*> workingList;
-			std::queue<trixel_t*>().swap(workingList);
+			std::queue<trixel_t*> workingList;
 			
 			for(unsigned int i = 0; i < 4; ++i)
 			{
@@ -322,8 +321,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 			double z = cos(90 - abs(pt->_dec));
 			Eigen::Vector3d p(x, y, z);
 			
-			static std::queue<trixel_t*> workingList;
-			std::queue<trixel_t*>().swap(workingList);
+			std::queue<trixel_t*> workingList;
 			
 			for (unsigned int i = 0; i < 4; ++i)
 			{
