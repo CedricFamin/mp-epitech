@@ -22,6 +22,8 @@ bin
 
 #CMake
 CMakeCache.txt
+CMakeScripts
+CMakeFiles
 
 #XCode
 *.xcodeproj
