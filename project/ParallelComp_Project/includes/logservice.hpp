@@ -5,6 +5,7 @@
 #include <sstream>
 #include <time.h>
 #include <sys/time.h>
+#include <mutex>
 
 // USE THIS COMMAND TO ADD A NEW MESSAGE
 // X = log type (see static const (NOTICE|WARNING|FATAL) below)
@@ -23,7 +24,7 @@ namespace ICoDF
     {
     public:
         // Add a message to the log service
-        void	AddMessage(short int type, std::string module, std::string message);
+        void	AddMessage(short int type, std::string module, std::string message);        
         
         /// Set a new configuration
         void	SetConfiguration(short int config);
@@ -57,6 +58,7 @@ namespace ICoDF
         std::fstream	_logFile; //< file stream
         
         std::string		_fileName; //< log file's name
+        std::mutex      _mutex;
         
     private:
         static LogService *_singleton; //< singleton ptr for the service.

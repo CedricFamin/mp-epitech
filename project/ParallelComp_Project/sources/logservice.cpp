@@ -10,6 +10,7 @@ LogService* ICoDF::LogService::_singleton = NULL; // initialize the singleton po
 void ICoDF::LogService::AddMessage(short int msgType, std::string module, std::string message)
 {
     // CRITICAL SECTION
+    _mutex.lock();
 	std::stringstream msg;
 	time_t now = time(0);
 	struct tm *ts = localtime(&now);
@@ -38,6 +39,7 @@ void ICoDF::LogService::AddMessage(short int msgType, std::string module, std::s
 	if (this->_config & LS_PRINT_ON_COUT)
         // Display message on cout
 		std::cout << msg.str() << std::endl;
+    _mutex.unlock();
 }
 
 // SETCONFIGURATION
