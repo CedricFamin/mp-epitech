@@ -62,7 +62,7 @@ namespace ICoDF_HTM
 		bool CreateHTM(void);
 		
         /// Assign a point (single operation) to the HTM
-		std::string AssignPoint(PointInfo_t *pt);
+		void AssignPoint(PointInfo_t *pt);
 		
         /// Load points from a file
 		void LoadCatalog(std::string& file);

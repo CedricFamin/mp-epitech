@@ -26,19 +26,16 @@ trixel_t** ICoDF_HTM::CreateTrixelChildren(trixel_t *parent)
 }
 
 // -------------------------------------------------------------------------------
-Eigen::Vector3d* ICoDF_HTM::ComputeTrixelMidpoints(trixel_t* trixel)
+void ICoDF_HTM::ComputeTrixelMidpoints(trixel_t* trixel, Eigen::Vector3d* outMidPoint)
 {
 	Eigen::Vector3d tmp;
-	Eigen::Vector3d* midPoints = new Eigen::Vector3d[3];
 	
 	tmp = trixel->_vertices[1] + trixel->_vertices[2];
-	midPoints[0] = tmp / tmp.norm();
+	outMidPoint[0] = tmp / tmp.norm();
 	tmp = trixel->_vertices[0] + trixel->_vertices[2];
-	midPoints[1] = tmp / tmp.norm();
+	outMidPoint[1] = tmp / tmp.norm();
 	tmp = trixel->_vertices[0] + trixel->_vertices[1];
-	midPoints[2] = tmp / tmp.norm();
-	
-	return midPoints;
+	outMidPoint[2] = tmp / tmp.norm();
 }
 
 // -------------------------------------------------------------------------------
@@ -78,7 +75,8 @@ trixel_t* ICoDF_HTM::CreateTrixelChild(trixel_t* parent, unsigned short int& ind
 		tmp.str("");
 		tmp << parent->_HTMId << index;
 		parent->_children[index]->_HTMId = tmp.str();
-		Eigen::Vector3d* midPoints = ComputeTrixelMidpoints(parent);
+        Eigen::Vector3d midPoints[3];
+		ComputeTrixelMidpoints(parent, midPoints);
 		
 		switch (index)
 		{
@@ -104,10 +102,8 @@ trixel_t* ICoDF_HTM::CreateTrixelChild(trixel_t* parent, unsigned short int& ind
 				break;
 			default:
 				LS_ADDMSG(LogService::FATAL, "ICoDF::CreateTrixelChild", "Given <index> is out of bound");
-				delete [] midPoints;
 				return NULL;
 		}
-		delete [] midPoints;
     }
 	else
     {
@@ -190,7 +186,8 @@ unsigned short int ICoDF_HTM::GetIndex(trixel_t* trixel, Eigen::Vector3d& p)
 		unsigned short int index = (unsigned short int)~0;
 		
 		Eigen::Vector3d* v = trixel->_vertices;
-		Eigen::Vector3d* w = ComputeTrixelMidpoints(trixel);
+		Eigen::Vector3d w[3];
+        ComputeTrixelMidpoints(trixel, w);
 		
         // HERE
 		if (v[0].cross(w[2]).dot(p) > 0 &&
@@ -213,7 +210,6 @@ unsigned short int ICoDF_HTM::GetIndex(trixel_t* trixel, Eigen::Vector3d& p)
 		if (index == ~0)
 			std::cout << "Incorrect : " << trixel->_HTMId << std::endl << "--- v1" << std::endl <<  trixel->_vertices[0] << std::endl << "--- v2" << std::endl << trixel->_vertices[1] << std::endl << "--- v3" << std::endl << trixel->_vertices[2] << std::endl << "--- p" << std::endl << p << std::endl;
 		
-		delete [] w;
 		return index;
     }
 	else

@@ -1,8 +1,66 @@
 #include "../includes/logservice.hpp"
 
+#include <chrono>
+#include <thread>
+
+
 using namespace ICoDF;
 
 LogService* ICoDF::LogService::_singleton = NULL; // initialize the singleton pointer to NULL
+
+
+LogQueue::LogQueue()
+{
+    
+}
+
+LogQueue::~LogQueue()
+{
+    
+}
+
+void LogQueue::AddLogMessage(short int msgType, std::string module, std::string message)
+{
+    std::lock_guard<std::mutex> _(_mutex);
+    
+    std::stringstream msg;
+	time_t now = time(0);
+	struct tm *ts = localtime(&now);
+	char date[80];
+	strftime(date, sizeof(date), "%c", ts);
+	
+	if (msgType & LogService::NOTICE)
+    {
+		msg << MSG_SQUELLETON("(o)");
+    }
+	else if (msgType & LogService::WARNING)
+    {
+		msg << MSG_SQUELLETON("/!\\");
+    }
+	else if (msgType & LogService::FATAL)
+    {
+		msg << MSG_SQUELLETON("[X]");
+    }
+    
+    _messages.push(msg.str());
+}
+
+void LogQueue::Synchronize()
+{
+    
+    std::lock_guard<std::mutex> _(_mutex);
+    _messagesToWrite.swap(_messages);
+}
+
+std::queue<std::string> const & LogQueue::GetMessageToWrite() const
+{
+    return _messagesToWrite;
+}
+
+void LogQueue::Clear()
+{
+    _messagesToWrite = std::queue<std::string>();
+}
 
 /// ADDMESSAGE
 /// Send a new message to the log service.
@@ -112,4 +170,47 @@ ICoDF::LogService::~LogService()
 		this->_logFile.flush();
 		this->_logFile.close();
     }
+    
+    _continue = false;
+    _thread.join();
 }
+
+ICoDF::LogQueue * ICoDF::LogService::CreateNewLogQueue()
+{
+    LogQueue * queue = new LogQueue();
+    _logQueues.push_back(queue);
+    
+    return queue;
+}
+
+void ICoDF::LogService::StartLogService()
+{
+    _thread = std::thread([=]()
+    {
+        std::chrono::milliseconds duration(200);
+        bool forceContinueLog = false;
+        _continue = true;
+        while (_continue || forceContinueLog)
+        {
+            forceContinueLog = false;
+            for (LogQueue * queue : _logQueues)
+            {
+                queue->Synchronize();
+                std::queue<std::string> messages = queue->GetMessageToWrite();
+                while (messages.size())
+                {
+                    forceContinueLog = true;
+                    if (this->_config & LS_WRITE_TO_FILE)
+                        if (this->CheckFile())
+                            this->_logFile << messages.front() << std::endl;
+                    if (this->_config & LS_PRINT_ON_COUT)
+                        std::cout << messages.front() << std::endl;
+                    messages.pop();
+                }
+                queue->Clear();
+            }
+            std::this_thread::sleep_for(duration);
+        }
+    });
+}
+

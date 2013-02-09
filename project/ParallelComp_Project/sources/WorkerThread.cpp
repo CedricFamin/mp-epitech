@@ -17,12 +17,15 @@ void WorkerThread::Launch()
     _htm = new HTM();
     
     _htm->CreateOctahedron();
+    
+	_logQueue->AddLogMessage(LogService::NOTICE, "HTM", "HTM core created");
+    
     _htm->UniformNumberGenerator(_objects.size(), _raMin, _raMax, _decMin, _decMax);
     _htm->CreateHTM();
     _rr = _htm->TwoPointsCorrelation(_programConfig.radius, _programConfig.delta);
     
     tmp << "Two POint Correlation have been computed for the Random Catalog [" << _rr << "]";
-    LS_ADDMSG(LogService::NOTICE, "Worker", tmp.str());
+    _logQueue->AddLogMessage(LogService::NOTICE, "Worker", tmp.str());
     
     _htm->GeneratePoint(_objects);
     _htm->CreateHTM();
@@ -30,11 +33,12 @@ void WorkerThread::Launch()
     
     tmp.str("");
     tmp << "Two POint Correlation have been computed for the Hybrid Catalog [" << _nr << "]";
-    LS_ADDMSG(LogService::NOTICE, "Worker", tmp.str());
+    _logQueue->AddLogMessage(LogService::NOTICE, "Worker", tmp.str());
     
     
     _htm->DeleteOctahedron();
     
+    _logQueue->AddLogMessage(LogService::NOTICE, "HTM", "HTM core deleted");
     delete _htm;
     _htm = 0;
 }

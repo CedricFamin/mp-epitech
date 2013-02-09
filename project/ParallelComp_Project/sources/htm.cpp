@@ -26,14 +26,14 @@ bool ICoDF_HTM::HTM::CreateHTM()
 }
 
 // AssignPoint
-std::string ICoDF_HTM::HTM::AssignPoint(PointInfo_t* pt)
+void ICoDF_HTM::HTM::AssignPoint(PointInfo_t* pt)
 {
 	if (pt->_current->_nbChildObject > 1)
     {
 		unsigned short int index = GetIndex(pt->_current, pt);
 		if (index == (unsigned int short)~0)
 		{
-			return std::string("error");
+			return;
 		}
 		
 		if (pt->_current->_children[index] != NULL)
@@ -58,11 +58,11 @@ std::string ICoDF_HTM::HTM::AssignPoint(PointInfo_t* pt)
 		unsigned short int indexOld = GetIndex(old->_current, old);
 		if (indexCurrent == (unsigned short int)~0)
 		{
-			return std::string("");
+			return;
 		}
 		if (indexOld == (unsigned short int)~0)
 		{
-			return std::string("");
+			return;
 		}
 		if (pt->_current->_children == NULL)
 		{
@@ -83,9 +83,7 @@ std::string ICoDF_HTM::HTM::AssignPoint(PointInfo_t* pt)
 		pt->_current->_info = pt;
 		this->_points[pt->_current->_HTMId] = pt;
 		pt->_current->_nbChildObject = 1;
-		return pt->_current->_HTMId;
     }
-	return pt->_current->_HTMId;
 }
 
 double ICoDF_HTM::HTM::getMinRa(void)
@@ -617,20 +615,19 @@ void	ICoDF_HTM::HTM::DeleteOctahedron(void)
 /// Create the HTM
 ICoDF_HTM::HTM::HTM()
 {
-	LS_ADDMSG(LogService::NOTICE, "HTM", "HTM core created");
+    //LS_ADDMSG(LogService::NOTICE, "HTM", "HTM core created");
 }
 
 ICoDF_HTM::HTM::~HTM()
 {
-	LS_ADDMSG(LogService::NOTICE, "HTM", "HTM core deleted");
+	//LS_ADDMSG(LogService::NOTICE, "HTM", "HTM core deleted");
 }
 
 // Cedric: V2
 
 void ICoDF_HTM::HTM::UniformNumberGenerator(unsigned int const nbObject, double const raMin, double const raMax, double const decMin, double const decMax)
 {
-    std::random_device rd;
-	unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
+    unsigned seed1 = std::chrono::system_clock::now().time_since_epoch().count();
 	std::mt19937 gen(seed1);
 	std::uniform_real_distribution<double> unif1(raMin, raMax);
 	std::uniform_real_distribution<double> unif2(decMin, decMax);

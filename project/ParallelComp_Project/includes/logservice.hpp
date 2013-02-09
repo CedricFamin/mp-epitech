@@ -6,6 +6,9 @@
 #include <time.h>
 #include <sys/time.h>
 #include <mutex>
+#include <queue>
+#include <list>
+#include <thread>
 
 // USE THIS COMMAND TO ADD A NEW MESSAGE
 // X = log type (see static const (NOTICE|WARNING|FATAL) below)
@@ -16,6 +19,29 @@
 
 namespace ICoDF
 {
+    
+    class LogQueue
+    {
+    public:
+        LogQueue();
+        ~LogQueue();
+        // WorkerThread Part
+        void AddLogMessage(short int msgType, std::string module, std::string message);
+        
+        // LoggerThread part
+        
+        // Never call this during an AddLogMessage
+        void Synchronize();
+        
+        std::queue<std::string> const & GetMessageToWrite() const;
+        void Clear();
+    protected:
+    private:
+        std::queue<std::string> _messages;
+        std::queue<std::string> _messagesToWrite;
+        std::mutex              _mutex;
+    };
+    
     // LogService manages all log system for the BLINK project.
     // For now it is able to wirte logs on a file or on the term.
     // Todo : also manages log using type and date (priority queue)
@@ -52,6 +78,11 @@ namespace ICoDF
         
         static const short int LS_PRINT_ON_COUT = LS_PRINT_NOTICE_ON_COUT | LS_PRINT_WARNING_ON_COUT | LS_PRINT_FATAL_ON_COUT; //
         
+        LogQueue * CreateNewLogQueue();
+        
+        void StartLogService();
+        void StopLogService();
+        
     private:
         short int		_config; //< Configuration table
         
@@ -62,6 +93,9 @@ namespace ICoDF
         
     private:
         static LogService *_singleton; //< singleton ptr for the service.
+        std::list<LogQueue*> _logQueues;
+        volatile bool _continue;
+        std::thread   _thread;
         
     public:
         /// Return a pointer the the log service instance.

@@ -10,7 +10,8 @@ int main(int ac, char **av)
 {
     // SETTING UP LOG
 	LogService::GetInstance()->SetConfiguration(LogService::LS_PRINT_ON_COUT);
-	LS_ADDMSG(LogService::NOTICE, "main", "BLINK::HTM test main");
+    LogQueue* logQueue = LogService::GetInstance()->CreateNewLogQueue();
+    logQueue->AddLogMessage(LogService::NOTICE, "main", "BLINK::HTM test main");
 	if (ac == 4)
     {
         ProgramConfig config;
@@ -29,9 +30,9 @@ int main(int ac, char **av)
         prgm.Clean();
     }
 	else
-		LS_ADDMSG(LogService::FATAL, "main", "Usage : ./LandySzalayEstimator <catalog_file> <radius> <delta>");
-	
-	LS_ADDMSG(LogService::NOTICE, "main", "Exiting...");
+        logQueue->AddLogMessage(LogService::FATAL, "main", "Usage : ./LandySzalayEstimator <catalog_file> <radius> <delta>");	
+    
+    logQueue->AddLogMessage(LogService::NOTICE, "main", "Exiting...");
 	LogService::Delete();
 	return 0;
 }

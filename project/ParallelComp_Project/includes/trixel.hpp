@@ -40,7 +40,7 @@ namespace ICoDF_HTM
     void ClearTrixelChildren(trixel_t *parent);
     
     /// Compute a trixel's midpoint vectors
-    Eigen::Vector3d* ComputeTrixelMidpoints(trixel_t* trixel);
+    void ComputeTrixelMidpoints(trixel_t* trixel, Eigen::Vector3d* outMidPoint);
     
     /// Create A Root Trixel
     trixel_t* CreateRootTrixel(std::string HTMId);

@@ -38,7 +38,8 @@ public:
 protected:
     void Log(unsigned int level, std::string const & message);
 private:
-    ICoDF::LogService           _logService;
+    ICoDF::LogQueue*            _logQueue;
+    
     ProgramConfig               _config;
     
     ICoDF_HTM::HTM *            _htm;

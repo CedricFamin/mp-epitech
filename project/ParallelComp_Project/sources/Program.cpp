@@ -6,17 +6,19 @@
 //
 //
 
+#include <mutex>
 #include <thread>
 
 #include "../includes/Program.h"
 #include "../includes/htm.hpp"
 #include "../includes/WorkerThread.h"
+#include "../includes/ThreadManager.hpp"
 
 using namespace ICoDF;
 using namespace ICoDF_HTM;
 
 Program::Program()
-: _logService()
+: _logQueue(0)
 , _htm(0)
 , _parser(0)
 , _raMin(.0)
@@ -24,8 +26,7 @@ Program::Program()
 , _decMin(.0)
 , _decMax(.0)
 {
-    
-    _logService.SetConfiguration(LogService::LS_PRINT_ON_COUT);
+    _logQueue = LogService::GetInstance()->CreateNewLogQueue();
     this->Log(LogService::NOTICE, "Create");
 }
 
@@ -81,51 +82,68 @@ void Program::Launch()
     tmp.str("");
     tmp << "Two Point Correlation have been computed for the Normal Catalog [" << nn << "] pairs";
     this->Log(LogService::NOTICE, tmp.str());
-    
-    unsigned int rr = 0;
-    unsigned int nr = 0;
-    
     _htm->DeleteOctahedron();
     delete _htm;
     _htm = 0;
     
-    std::vector<std::pair<std::thread*, WorkerThread*>> workerList;
+    unsigned int rr = 0;
+    unsigned int nr = 0;
+    
+    std::vector<std::pair<std::thread*, ExecutionQueue*>> execQueue;
+    std::vector<WorkerThread*> workerList;
+    unsigned int nbThread=  std::thread::hardware_concurrency();
+    for (int i = 0; i < nbThread; ++i)
+    {
+        execQueue.push_back(std::make_pair((std::thread*)0, new ExecutionQueue()));
+    }
+    
     for (int i = 0; i < this->_config.loop; ++i)
     {
         WorkerThread * worker = new WorkerThread();
         worker->Init(_config, _parser->getObjects(), _raMin, _raMax, _decMin, _decMax);
+        execQueue[i%nbThread].second->AddCall(worker);
+        workerList.push_back(worker);
+    }
+    
+    LogService::GetInstance()->StartLogService();
+    for (int i = 0; i < nbThread; ++i)
+    {
+        execQueue[i].first = new std::thread(&ExecutionQueue::Run, execQueue[i].second);
+    }
+    
+    for (std::pair<std::thread*, ExecutionQueue*> q : execQueue)
+    {
+        tmp.str("");
+        tmp << "Join the thread" << q.first->get_id();
+        this->Log(LogService::NOTICE, tmp.str());
         
-        std::thread * thread = new std::thread(&WorkerThread::Launch, worker);
-        workerList.push_back(std::make_pair(thread, worker));
+        if (q.first->joinable())
+            q.first->join();
+        
+        delete q.first;
+        delete q.second;
     }
     
     unsigned int i = 0;
-    for (std::pair<std::thread*, WorkerThread*> & worker : workerList)
+    
+    for (WorkerThread* worker : workerList)
     {
-        tmp.str("");
-        tmp << "Join the thread" << worker.first->get_id();
-        this->Log(LogService::NOTICE, tmp.str());
-        
-        if (worker.first->joinable())
-            worker.first->join();
-        
         this->Log(LogService::NOTICE, "Done.");
-        worker.second->Clean();
+        worker->Clean();
         
-        unsigned int currentRR = worker.second->GetRR();
+        unsigned int currentRR = worker->GetRR();
         rr += currentRR;
         tmp.str("");
         tmp << "Two POint Correlation have been computed for the Random Catalog [" << currentRR << "] mean [" << (rr / (i + 1)) << "]";
         
         this->Log(LogService::NOTICE, tmp.str());
         
-        unsigned int currentNR = worker.second->GetNR();
+        unsigned int currentNR = worker->GetNR();
         nr += currentNR;
         tmp.str("");
         tmp << "Two POint Correlation have been computed for the Hybrid Catalog [" << currentNR << "] mean [" << (nr / (i + 1)) << "]";
         this->Log(LogService::NOTICE, tmp.str());
-        delete worker.first;
-        delete worker.second;
+        delete worker;
         
         ++i;
     }
@@ -148,6 +166,7 @@ void Program::Launch()
 
 void Program::Log(unsigned int level, std::string const & message)
 {
-    LS_ADDMSG(level, "Program", message);
+    _logQueue->AddLogMessage(level, "Program", message);
+    //LS_ADDMSG(level, "Program", message);
     //_logService.AddMessage(level, "Program", message);
 }

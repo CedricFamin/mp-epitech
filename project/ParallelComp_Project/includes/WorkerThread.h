@@ -3,11 +3,12 @@
 
 #include "htm.hpp"
 #include "Program.h"
+#include "logservice.hpp"
 
 class WorkerThread
 {
 public:
-    WorkerThread() {}
+    WorkerThread() { _logQueue = ICoDF::LogService::GetInstance()->CreateNewLogQueue(); }
     ~WorkerThread() {}
     
     void Init(ProgramConfig & config, std::vector<std::pair<double, double>> const & objects,
@@ -28,6 +29,8 @@ private:
     double _raMax;
     double _decMin;
     double _decMax;
+    
+    ICoDF::LogQueue * _logQueue;
 };
 
 
