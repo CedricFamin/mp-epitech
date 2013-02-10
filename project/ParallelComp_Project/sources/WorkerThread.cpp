@@ -35,7 +35,11 @@ void WorkerThread::Launch()
     tmp << "Two POint Correlation have been computed for the Hybrid Catalog [" << _nr << "]";
     _logQueue->AddLogMessage(LogService::NOTICE, "Worker", tmp.str());
     
-    
+    if (_shouldLogHTM)
+    {
+        _htm->LogIntoFile("log");
+        _shouldLogHTM = false;
+    }
     _htm->DeleteOctahedron();
     
     _logQueue->AddLogMessage(LogService::NOTICE, "HTM", "HTM core deleted");

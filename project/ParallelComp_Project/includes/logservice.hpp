@@ -19,7 +19,6 @@
 
 namespace ICoDF
 {
-    
     class LogQueue
     {
     public:

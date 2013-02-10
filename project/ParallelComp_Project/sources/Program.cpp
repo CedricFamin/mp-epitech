@@ -103,6 +103,8 @@ void Program::Launch()
         worker->Init(_config, _parser->getObjects(), _raMin, _raMax, _decMin, _decMax);
         execQueue[i%nbThread].second->AddCall(worker);
         workerList.push_back(worker);
+        if (i == 0)
+            worker->SetShouldLogHTM(true);
     }
     
     LogService::GetInstance()->StartLogService();

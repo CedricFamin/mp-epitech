@@ -94,6 +94,7 @@ namespace ICoDF_HTM
         // Cedric: this method was removed from the parser
 		void UniformNumberGenerator(unsigned int const nbObject, double const raMin, double const raMax, double const decMin, double const decMax);
 		void GeneratePoint(std::vector<std::pair<double, double>> const & parPointsDefinition);
+        void LogIntoFile(std::string const & parFilename);
 	private:
 		
 		HTMConstraint_t* SetConstraint(PointInfo_t* pt, double& radius);

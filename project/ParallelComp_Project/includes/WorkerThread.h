@@ -8,7 +8,7 @@
 class WorkerThread
 {
 public:
-    WorkerThread() { _logQueue = ICoDF::LogService::GetInstance()->CreateNewLogQueue(); }
+    WorkerThread() : _shouldLogHTM(false) { _logQueue = ICoDF::LogService::GetInstance()->CreateNewLogQueue(); }
     ~WorkerThread() {}
     
     void Init(ProgramConfig & config, std::vector<std::pair<double, double>> const & objects,
@@ -18,6 +18,7 @@ public:
     
     double GetRR() const { return _rr; }
     double GetNR() const { return _nr; }
+    void SetShouldLogHTM(bool parValue) { _shouldLogHTM = parValue; }
 protected:
 private:
     HTM * _htm;
@@ -29,6 +30,7 @@ private:
     double _raMax;
     double _decMin;
     double _decMax;
+    bool   _shouldLogHTM;
     
     ICoDF::LogQueue * _logQueue;
 };

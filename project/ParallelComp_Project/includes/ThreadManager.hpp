@@ -5,38 +5,21 @@
 #include <vector>
 #include <queue>
 #include <atomic>
+#include <mutex>
+#include "WorkerThread.h"
 
-class ThreadLauncher
+class ExecutionQueue
 {
 public:
-    ThreadLauncher() {}
-    ~ThreadLauncher() {}
+    ExecutionQueue()  {}
+    ~ExecutionQueue() {}
     
-    void Run() {}
+    void Run();
+    void AddCall(WorkerThread* worker);
+    
 protected:
 private:
-}
-
-class ThreadManager
-{
-public:
-    ThreadManager();
-    ~ThreadManager();
-    
-    void AddDeferredCall(ThreadLauncher & thread);
-    void JoinAllThread();
-    void SetNbSimultaneousThead(unsigned int nb);
-    void LaunchThreadIFN();
-    
-    static void IncrementThreadCounter();
-    static void DeccrementThreadCounter();
-protected:
-private:
-    std::queue<ThreadLauncher*> _threadsToLaunch;
-    unsigned int                _nbSimultaneousThread;
-    
-    std::list<ThreadManager*>   _threadManagers;
-    static std::atomic__uchar   _nbThreadLaunched;
+    std::vector<WorkerThread*> _exec;
 };
 
 #endif

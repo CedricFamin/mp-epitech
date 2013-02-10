@@ -31,6 +31,10 @@ namespace ICoDF_HTM
         std::string				_HTMId;		//< N10120112121101
         unsigned int			_nbChildObject; //< Number of objects contained in this trixel.
         struct PointInfo_s*			_info;		//< Point information structure for the actual
+        /*
+        void* operator new(size_t);
+        void operator delete(void*);
+        */
     } trixel_t;
     
     /// Delte the given trixel (but not the PointInfo_t)

@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 #include "../includes/Program.h"
+#include "../includes/GenericMemoryPool.hpp"
 
 using namespace ICoDF;
 using namespace ICoDF_HTM;
@@ -9,6 +10,8 @@ using namespace ICoDF_HTM;
 int main(int ac, char **av)
 {
     // SETTING UP LOG
+    //GenericMemoryPool<trixel_t>::CreateInstance();
+    
 	LogService::GetInstance()->SetConfiguration(LogService::LS_PRINT_ON_COUT);
     LogQueue* logQueue = LogService::GetInstance()->CreateNewLogQueue();
     logQueue->AddLogMessage(LogService::NOTICE, "main", "BLINK::HTM test main");
@@ -34,5 +37,6 @@ int main(int ac, char **av)
     
     logQueue->AddLogMessage(LogService::NOTICE, "main", "Exiting...");
 	LogService::Delete();
+    //GenericMemoryPool<trixel_t>::DeleteInstance();
 	return 0;
 }

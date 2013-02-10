@@ -173,6 +173,11 @@ ICoDF::LogService::~LogService()
     
     _continue = false;
     _thread.join();
+    for (LogQueue * queue : _logQueues)
+    {
+        delete queue;
+    }
+    
 }
 
 ICoDF::LogQueue * ICoDF::LogService::CreateNewLogQueue()

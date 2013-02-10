@@ -306,7 +306,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 	double infLimit = radius - delta;
 	if (infLimit < 0) infLimit = 0;
 	double supLimit = radius + delta;
-	HTMConstraint_t *constraint = new HTMConstraint_t;
+	HTMConstraint_t constraint;
 	
 	for (it = this->_points.begin(); it != this->_points.end(); ++it)
     {
@@ -342,7 +342,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 						supInside++;
 				}
 				if (supInside == 3 && infInside == 0)
-					constraint->_inside.push_back(this->_octahedron->_rootTrixels[i]);
+					constraint._inside.push_back(this->_octahedron->_rootTrixels[i]);
 				if ((supInside == 3 && infInside > 0) || supInside > 0)
 					workingList.push(this->_octahedron->_rootTrixels[i]);
 				else
@@ -361,7 +361,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 							  _octahedron->_rootTrixels[i]->_vertices[1].cross(_octahedron->_rootTrixels[i]->_vertices[2]).dot(p) < 0 &&
 							  _octahedron->_rootTrixels[i]->_vertices[2].cross(_octahedron->_rootTrixels[i]->_vertices[0]).dot(p)))
 						{
-							constraint->_partial.push_back(_octahedron->_rootTrixels[i]);
+							constraint._partial.push_back(_octahedron->_rootTrixels[i]);
 						}
 					}
 				}
@@ -387,7 +387,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 					++supInside;
 				
 				if (supInside == 3 && infInside == 0)
-					constraint->_inside.push_back(tmp);
+					constraint._inside.push_back(tmp);
 				else if ((supInside == 3 && infInside > 0)
 						 || supInside > 0)
 				{
@@ -398,7 +398,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 								workingList.push(tmp->_children[i]);
 					}
 					else
-						constraint->_partial.push_back(tmp);
+						constraint._partial.push_back(tmp);
 				}
 				else
 				{
@@ -416,7 +416,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 							  tmp->_vertices[1].cross(tmp->_vertices[2]).dot(p) < 0 &&
 							  tmp->_vertices[2].cross(tmp->_vertices[0]).dot(p)))
 						{
-							constraint->_partial.push_back(tmp);
+							constraint._partial.push_back(tmp);
 						}
 					}
 				}
@@ -424,16 +424,14 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 		}
     }
 	
-	for (auto it2 = constraint->_inside.begin(); it2 != constraint->_inside.end(); ++it2)
+	for (auto it2 = constraint._inside.begin(); it2 != constraint._inside.end(); ++it2)
     {
 		nbPairs += (*it2)->_nbChildObject;
     }
-	for (auto it2 = constraint->_partial.begin(); it2 != constraint->_partial.end(); ++it2)
+	for (auto it2 = constraint._partial.begin(); it2 != constraint._partial.end(); ++it2)
     {
 		nbPairs += 1;
     }
-	
-	delete constraint;
 	return nbPairs;
 }
 
@@ -589,19 +587,26 @@ void	ICoDF_HTM::HTM::FreeAllTrixels(trixel_t* current)
 					FreeAllTrixels(current->_children[i]);
 					delete current->_children[i];
 				}
-			}
+            }
 			delete[] current->_children;
+                
 		}
+        if (current->_vertices != NULL)
+            delete[] current->_vertices;
     }
+}
+
+void ICoDF_HTM::HTM::LogIntoFile(std::string const & parFilename)
+{
+    std::ofstream fstream;
+	fstream.open(parFilename);
+	for (auto i = 0; i < 8; ++i)
+		this->Display(this->_octahedron->_rootTrixels[i], fstream);
+	fstream.close();
 }
 
 void	ICoDF_HTM::HTM::DeleteOctahedron(void)
 {
-	std::ofstream fstream;
-	fstream.open("log");
-	for (auto i = 0; i < 8; ++i)
-		this->Display(this->_octahedron->_rootTrixels[i], fstream);
-	fstream.close();
 	for (auto i = 0; i < 8; ++i)
 		this->FreeAllTrixels(this->_octahedron->_rootTrixels[i]);
 	for (auto it = this->_points.begin(); it != this->_points.end(); ++it)
@@ -610,6 +615,7 @@ void	ICoDF_HTM::HTM::DeleteOctahedron(void)
 		delete this->_octahedron->_rootTrixels[i];
 	this->_points.clear();
 	delete this->_octahedron;
+    this->_octahedron = 0;
 }
 
 /// Create the HTM

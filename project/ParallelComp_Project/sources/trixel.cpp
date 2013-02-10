@@ -1,4 +1,16 @@
+#include "../includes/GenericMemoryPool.hpp"
 #include "../includes/trixel.hpp"
+/*
+void* trixel_t::operator new(size_t size)
+{
+    return GenericMemoryPool<trixel_t>::GetInstance()->Retain();
+}
+
+void trixel_t::operator delete(void* ptr)
+{
+    GenericMemoryPool<trixel_t>::GetInstance()->Release(ptr);
+}
+*/
 
 // ------------------------------------------------------------------------------
 // CREATETRIXELCHILDREN
