@@ -1,8 +1,8 @@
-CXXFLAGS	=	-g -W -Wall -Wextra -Wunused-parameter -std=c++0x
+CXXFLAGS	=	-g -W -Wall -Wextra -Wunused-parameter -std=c++11 -pg -O3
 
 CXX		=	g++
 
-LIBS		=	-lpthread
+LIBS		=
 
 SRCS		=	main.cpp
 
