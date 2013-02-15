@@ -1,0 +1,379 @@
+real	0m28.222s
+user	0m25.819s
+sys	0m2.240s
+
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 23.51      2.16     2.16 16141032     0.00     0.00  ICoDF_HTM::HTM::AssignPoint(ICoDF_HTM::PointInfo_s*)
+ 20.68      4.06     1.90 17539535     0.00     0.00  ICoDF_HTM::ComputeTrixelMidpoints(ICoDF_HTM::trixel_s*)
+ 16.22      5.55     1.49      800     1.86     1.92  ICoDF_HTM::HTM::Display(ICoDF_HTM::trixel_s*, std::basic_ofstream<char, std::char_traits<char> >&)
+  8.92      6.37     0.82                             ICoDF_HTM::HTM::TwoPointsCorrelation(double&, double&)
+  8.38      7.14     0.77 15170462     0.00     0.00  ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, Eigen::Matrix<double, 3, 1, 0, 3, 1>&)
+  4.46      7.55     0.41 15170462     0.00     0.00  ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, double&, double&)
+  3.75      7.90     0.35      800     0.43     0.43  ICoDF_HTM::HTM::FreeAllTrixels(ICoDF_HTM::trixel_s*)
+  3.37      8.21     0.31  1398575     0.00     0.00  std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::find(std::string const&)
+  1.52      8.35     0.14                             ICoDF_HTM::HTM::CreateHTM()
+  1.09      8.45     0.10      402     0.25     0.25  std::_List_base<ICoDF_HTM::trixel_s*, std::allocator<ICoDF_HTM::trixel_s*> >::_M_clear()
+  0.98      8.54     0.09  3305467     0.00     0.00  std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_unique_<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::_Rb_tree_const_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&)
+  0.76      8.61     0.07  1453689     0.00     0.00  ICoDF_HTM::IsCorrectRA(double&)
+  0.76      8.68     0.07   970830     0.00     0.00  ICoDF_HTM::HTM::SelectRootTrixel(ICoDF_HTM::PointInfo_s*)
+  0.65      8.74     0.06  3305467     0.00     0.00  std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&)
+  0.65      8.80     0.06  2369073     0.00     0.00  ICoDF_HTM::CreateTrixelChild(ICoDF_HTM::trixel_s*, unsigned short&)
+  0.65      8.86     0.06      101     0.59     0.59  std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_erase(std::_Rb_tree_node<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >*)
+  0.54      8.91     0.05  2369384     0.00     0.00  char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag)
+  0.54      8.96     0.05   985320     0.00     0.00  void std::__push_heap<std::_Deque_iterator<double, double&, double*>, long, double, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, long, long, double, std::greater<double>)
+  0.44      9.00     0.04  2369881     0.00     0.00  ICoDF_HTM::InitTrixel(ICoDF_HTM::trixel_s*)
+  0.33      9.03     0.03  2907379     0.00     0.00  std::_Deque_base<ICoDF_HTM::trixel_s*, std::allocator<ICoDF_HTM::trixel_s*> >::~_Deque_base()
+  0.33      9.06     0.03   487830     0.00     0.00  ICoDF_HTM::HTM::itemsToStore(double const&, double const&)
+  0.22      9.08     0.02  2907380     0.00     0.00  std::_Deque_base<ICoDF_HTM::trixel_s*, std::allocator<ICoDF_HTM::trixel_s*> >::_M_initialize_map(unsigned long)
+  0.22      9.10     0.02  1453689     0.00     0.00  ICoDF_HTM::IsCorrectDEC(double&)
+  0.22      9.12     0.02   966000     0.00     0.00  double std::generate_canonical<double, 53ul, std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul> >(std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>&)
+  0.22      9.14     0.02   252203     0.00     0.00  void std::deque<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::_M_push_back_aux<ICoDF_HTM::PointInfo_s* const&>(ICoDF_HTM::PointInfo_s* const&)
+  0.22      9.16     0.02                             ICoDF_HTM::HTM::DeleteOctahedron()
+  0.16      9.17     0.02   970830     0.00     0.00  ICoDF_HTM::HTM::AddPoint(double const&, double const&)
+  0.11      9.18     0.01                             ICoDF_HTM::HTMAsciiParser::UniformNumberGenerator(double const&, double const&, double const&, double const&)
+  0.05      9.19     0.01                             ICoDF_HTM::HTM::CreateOctahedron()
+  0.05      9.19     0.01                             ICoDF_HTM::HTM::Delete()
+  0.00      9.19     0.00 26075337     0.00     0.00  _init
+  0.00      9.19     0.00 15170462     0.00     0.00  ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, ICoDF_HTM::PointInfo_s*)
+  0.00      9.19     0.00  1398575     0.00     0.00  ICoDF_HTM::CreateTrixelChildren(ICoDF_HTM::trixel_s*)
+  0.00      9.19     0.00    15242     0.00     0.00  void std::deque<double, std::allocator<double> >::_M_push_back_aux<double const&>(double const&)
+  0.00      9.19     0.00     9660     0.00     0.00  void std::__adjust_heap<std::_Deque_iterator<double, double&, double*>, long, double, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, long, long, double, std::greater<double>)
+  0.00      9.19     0.00     2957     0.00     0.00  std::pair<std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_unique<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&)
+  0.00      9.19     0.00      808     0.00     0.00  ICoDF_HTM::CreateRootTrixel(std::string)
+  0.00      9.19     0.00      150     0.00     0.00  std::deque<double, std::allocator<double> >::_M_pop_back_aux()
+  0.00      9.19     0.00        4     0.00     0.00  std::_Deque_base<double, std::allocator<double> >::_M_initialize_map(unsigned long)
+  0.00      9.19     0.00        4     0.00     0.00  std::_Deque_base<double, std::allocator<double> >::~_Deque_base()
+  0.00      9.19     0.00        3     0.00     0.00  ICoDF::LogService::AddMessage(short, std::string, std::string)
+  0.00      9.19     0.00        2     0.00     0.00  ICoDF::LogService::GetInstance()
+  0.00      9.19     0.00        2     0.00     0.00  std::_Deque_base<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::_M_initialize_map(unsigned long)
+  0.00      9.19     0.00        2     0.00     0.00  std::_Deque_base<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::~_Deque_base()
+  0.00      9.19     0.00        2     0.00     0.00  void std::make_heap<std::_Deque_iterator<double, double&, double*>, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, std::_Deque_iterator<double, double&, double*>, std::greater<double>)
+  0.00      9.19     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN5ICoDF10LogService10_singletonE
+  0.00      9.19     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN9ICoDF_HTM14HTMAsciiParser5ParseERSs
+  0.00      9.19     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN9ICoDF_HTM20CreateTrixelChildrenEPNS_8trixel_sE
+  0.00      9.19     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN9ICoDF_HTM3HTM10_singletonE
+  0.00      9.19     0.00        1     0.00     0.00  _GLOBAL__sub_I_main
+  0.00      9.19     0.00        1     0.00     0.00  ICoDF::LogService::LogService()
+  0.00      9.19     0.00        1     0.00     0.00  ICoDF::LogService::~LogService()
+  0.00      9.19     0.00        1     0.00     0.00  ICoDF_HTM::HTM::GetInstance()
+  0.00      9.19     0.00        1     0.00     0.00  ICoDF_HTM::HTM::HTM()
+  0.00      9.19     0.00        1     0.00     0.60  ICoDF_HTM::HTM::~HTM()
+
+			Call graph
+
+
+granularity: each sample hit covers 2 byte(s) for 0.11% of 9.19 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     64.9    0.14    5.83                 ICoDF_HTM::HTM::CreateHTM() [1]
+                2.16    3.67 16141032/16141032     ICoDF_HTM::HTM::AssignPoint(ICoDF_HTM::PointInfo_s*) [2]
+                0.00    0.00 16140902/26075337     _init [51]
+-----------------------------------------------
+                2.16    3.67 16141032/16141032     ICoDF_HTM::HTM::CreateHTM() [1]
+[2]     63.4    2.16    3.67 16141032         ICoDF_HTM::HTM::AssignPoint(ICoDF_HTM::PointInfo_s*) [2]
+                0.41    2.41 15170462/15170462     ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, double&, double&) [3]
+                0.06    0.35 2369073/2369073     ICoDF_HTM::CreateTrixelChild(ICoDF_HTM::trixel_s*, unsigned short&) [9]
+                0.31    0.00 1398575/1398575     std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::find(std::string const&) [11]
+                0.06    0.04 2369275/3305467     std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_unique_<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::_Rb_tree_const_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&) [12]
+                0.02    0.00  237038/252203      void std::deque<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::_M_push_back_aux<ICoDF_HTM::PointInfo_s* const&>(ICoDF_HTM::PointInfo_s* const&) [29]
+                0.00    0.00 15170462/15170462     ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, ICoDF_HTM::PointInfo_s*) [52]
+                0.00    0.00 3767850/26075337     _init [51]
+                0.00    0.00 1398575/1398575     ICoDF_HTM::CreateTrixelChildren(ICoDF_HTM::trixel_s*) [53]
+-----------------------------------------------
+                0.41    2.41 15170462/15170462     ICoDF_HTM::HTM::AssignPoint(ICoDF_HTM::PointInfo_s*) [2]
+[3]     30.7    0.41    2.41 15170462         ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, double&, double&) [3]
+                0.77    1.64 15170462/15170462     ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, Eigen::Matrix<double, 3, 1, 0, 3, 1>&) [4]
+-----------------------------------------------
+                0.77    1.64 15170462/15170462     ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, double&, double&) [3]
+[4]     26.3    0.77    1.64 15170462         ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, Eigen::Matrix<double, 3, 1, 0, 3, 1>&) [4]
+                1.64    0.00 15170462/17539535     ICoDF_HTM::ComputeTrixelMidpoints(ICoDF_HTM::trixel_s*) [6]
+-----------------------------------------------
+                                                 <spontaneous>
+[5]     21.3    0.02    1.94                 ICoDF_HTM::HTM::DeleteOctahedron() [5]
+                1.49    0.04     800/800         ICoDF_HTM::HTM::Display(ICoDF_HTM::trixel_s*, std::basic_ofstream<char, std::char_traits<char> >&) [7]
+                0.35    0.00     800/800         ICoDF_HTM::HTM::FreeAllTrixels(ICoDF_HTM::trixel_s*) [10]
+                0.06    0.00     100/101         std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_erase(std::_Rb_tree_node<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >*) [21]
+                0.00    0.00     800/26075337     _init [51]
+-----------------------------------------------
+                0.26    0.00 2369073/17539535     ICoDF_HTM::CreateTrixelChild(ICoDF_HTM::trixel_s*, unsigned short&) [9]
+                1.64    0.00 15170462/17539535     ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, Eigen::Matrix<double, 3, 1, 0, 3, 1>&) [4]
+[6]     20.7    1.90    0.00 17539535         ICoDF_HTM::ComputeTrixelMidpoints(ICoDF_HTM::trixel_s*) [6]
+-----------------------------------------------
+                             2345404             ICoDF_HTM::HTM::Display(ICoDF_HTM::trixel_s*, std::basic_ofstream<char, std::char_traits<char> >&) [7]
+                1.49    0.04     800/800         ICoDF_HTM::HTM::DeleteOctahedron() [5]
+[7]     16.7    1.49    0.04     800+2345404 ICoDF_HTM::HTM::Display(ICoDF_HTM::trixel_s*, std::basic_ofstream<char, std::char_traits<char> >&) [7]
+                0.03    0.02  936192/3305467     std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_unique_<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::_Rb_tree_const_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&) [12]
+                0.00    0.00  936192/26075337     _init [51]
+                             2345404             ICoDF_HTM::HTM::Display(ICoDF_HTM::trixel_s*, std::basic_ofstream<char, std::char_traits<char> >&) [7]
+-----------------------------------------------
+                                                 <spontaneous>
+[8]     11.5    0.82    0.24                 ICoDF_HTM::HTM::TwoPointsCorrelation(double&, double&) [8]
+                0.10    0.00     402/402         std::_List_base<ICoDF_HTM::trixel_s*, std::allocator<ICoDF_HTM::trixel_s*> >::_M_clear() [14]
+                0.07    0.00 1453689/1453689     ICoDF_HTM::IsCorrectRA(double&) [18]
+                0.03    0.00 2907379/2907379     std::_Deque_base<ICoDF_HTM::trixel_s*, std::allocator<ICoDF_HTM::trixel_s*> >::~_Deque_base() [25]
+                0.02    0.00 2907380/2907380     std::_Deque_base<ICoDF_HTM::trixel_s*, std::allocator<ICoDF_HTM::trixel_s*> >::_M_initialize_map(unsigned long) [26]
+                0.02    0.00 1453689/1453689     ICoDF_HTM::IsCorrectDEC(double&) [27]
+-----------------------------------------------
+                0.06    0.35 2369073/2369073     ICoDF_HTM::HTM::AssignPoint(ICoDF_HTM::PointInfo_s*) [2]
+[9]      4.4    0.06    0.35 2369073         ICoDF_HTM::CreateTrixelChild(ICoDF_HTM::trixel_s*, unsigned short&) [9]
+                0.26    0.00 2369073/17539535     ICoDF_HTM::ComputeTrixelMidpoints(ICoDF_HTM::trixel_s*) [6]
+                0.05    0.00 2369073/2369384     char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [22]
+                0.04    0.00 2369073/2369881     ICoDF_HTM::InitTrixel(ICoDF_HTM::trixel_s*) [24]
+-----------------------------------------------
+                             2345404             ICoDF_HTM::HTM::FreeAllTrixels(ICoDF_HTM::trixel_s*) [10]
+                0.35    0.00     800/800         ICoDF_HTM::HTM::DeleteOctahedron() [5]
+[10]     3.8    0.35    0.00     800+2345404 ICoDF_HTM::HTM::FreeAllTrixels(ICoDF_HTM::trixel_s*) [10]
+                0.00    0.00 2345404/26075337     _init [51]
+                             2345404             ICoDF_HTM::HTM::FreeAllTrixels(ICoDF_HTM::trixel_s*) [10]
+-----------------------------------------------
+                0.31    0.00 1398575/1398575     ICoDF_HTM::HTM::AssignPoint(ICoDF_HTM::PointInfo_s*) [2]
+[11]     3.4    0.31    0.00 1398575         std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::find(std::string const&) [11]
+-----------------------------------------------
+                0.03    0.02  936192/3305467     ICoDF_HTM::HTM::Display(ICoDF_HTM::trixel_s*, std::basic_ofstream<char, std::char_traits<char> >&) [7]
+                0.06    0.04 2369275/3305467     ICoDF_HTM::HTM::AssignPoint(ICoDF_HTM::PointInfo_s*) [2]
+[12]     1.6    0.09    0.06 3305467         std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_unique_<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::_Rb_tree_const_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&) [12]
+                0.06    0.00 3302510/3305467     std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&) [20]
+                0.00    0.00    2957/2957        std::pair<std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_unique<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&) [36]
+-----------------------------------------------
+                                                 <spontaneous>
+[13]     1.3    0.00    0.12                 ICoDF_HTM::HTMAsciiParser::Parse(std::string&) [13]
+                0.03    0.05  487830/487830      ICoDF_HTM::HTM::itemsToStore(double const&, double const&) [16]
+                0.01    0.04  487830/970830      ICoDF_HTM::HTM::AddPoint(double const&, double const&) [15]
+                0.00    0.00  975761/26075337     _init [51]
+-----------------------------------------------
+                0.10    0.00     402/402         ICoDF_HTM::HTM::TwoPointsCorrelation(double&, double&) [8]
+[14]     1.1    0.10    0.00     402         std::_List_base<ICoDF_HTM::trixel_s*, std::allocator<ICoDF_HTM::trixel_s*> >::_M_clear() [14]
+-----------------------------------------------
+                0.01    0.04  483000/970830      ICoDF_HTM::HTMAsciiParser::UniformNumberGenerator(double const&, double const&, double const&, double const&) [17]
+                0.01    0.04  487830/970830      ICoDF_HTM::HTMAsciiParser::Parse(std::string&) [13]
+[15]     0.9    0.02    0.07  970830         ICoDF_HTM::HTM::AddPoint(double const&, double const&) [15]
+                0.07    0.00  970830/970830      ICoDF_HTM::HTM::SelectRootTrixel(ICoDF_HTM::PointInfo_s*) [19]
+                0.00    0.00   15165/252203      void std::deque<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::_M_push_back_aux<ICoDF_HTM::PointInfo_s* const&>(ICoDF_HTM::PointInfo_s* const&) [29]
+-----------------------------------------------
+                0.03    0.05  487830/487830      ICoDF_HTM::HTMAsciiParser::Parse(std::string&) [13]
+[16]     0.9    0.03    0.05  487830         ICoDF_HTM::HTM::itemsToStore(double const&, double const&) [16]
+                0.05    0.00  975660/985320      void std::__push_heap<std::_Deque_iterator<double, double&, double*>, long, double, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, long, long, double, std::greater<double>) [23]
+                0.00    0.00   15242/15242       void std::deque<double, std::allocator<double> >::_M_push_back_aux<double const&>(double const&) [54]
+-----------------------------------------------
+                                                 <spontaneous>
+[17]     0.8    0.01    0.06                 ICoDF_HTM::HTMAsciiParser::UniformNumberGenerator(double const&, double const&, double const&, double const&) [17]
+                0.01    0.04  483000/970830      ICoDF_HTM::HTM::AddPoint(double const&, double const&) [15]
+                0.02    0.00  966000/966000      double std::generate_canonical<double, 53ul, std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul> >(std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>&) [28]
+                0.00    0.00     100/26075337     _init [51]
+-----------------------------------------------
+                0.07    0.00 1453689/1453689     ICoDF_HTM::HTM::TwoPointsCorrelation(double&, double&) [8]
+[18]     0.8    0.07    0.00 1453689         ICoDF_HTM::IsCorrectRA(double&) [18]
+-----------------------------------------------
+                0.07    0.00  970830/970830      ICoDF_HTM::HTM::AddPoint(double const&, double const&) [15]
+[19]     0.8    0.07    0.00  970830         ICoDF_HTM::HTM::SelectRootTrixel(ICoDF_HTM::PointInfo_s*) [19]
+-----------------------------------------------
+                0.00    0.00    2957/3305467     std::pair<std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_unique<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&) [36]
+                0.06    0.00 3302510/3305467     std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_unique_<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::_Rb_tree_const_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&) [12]
+[20]     0.7    0.06    0.00 3305467         std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&) [20]
+-----------------------------------------------
+                             1906892             std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_erase(std::_Rb_tree_node<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >*) [21]
+                0.00    0.00       1/101         ICoDF_HTM::HTM::~HTM() [32]
+                0.06    0.00     100/101         ICoDF_HTM::HTM::DeleteOctahedron() [5]
+[21]     0.7    0.06    0.00     101+1906892 std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_erase(std::_Rb_tree_node<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >*) [21]
+                0.00    0.00 1906892/26075337     _init [51]
+                             1906892             std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_erase(std::_Rb_tree_node<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >*) [21]
+-----------------------------------------------
+                0.00    0.00     311/2369384     ICoDF::LogService::AddMessage(short, std::string, std::string) [38]
+                0.05    0.00 2369073/2369384     ICoDF_HTM::CreateTrixelChild(ICoDF_HTM::trixel_s*, unsigned short&) [9]
+[22]     0.5    0.05    0.00 2369384         char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [22]
+-----------------------------------------------
+                0.00    0.00    9660/985320      void std::__adjust_heap<std::_Deque_iterator<double, double&, double*>, long, double, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, long, long, double, std::greater<double>) [33]
+                0.05    0.00  975660/985320      ICoDF_HTM::HTM::itemsToStore(double const&, double const&) [16]
+[23]     0.5    0.05    0.00  985320         void std::__push_heap<std::_Deque_iterator<double, double&, double*>, long, double, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, long, long, double, std::greater<double>) [23]
+-----------------------------------------------
+                0.00    0.00     808/2369881     ICoDF_HTM::CreateRootTrixel(std::string) [37]
+                0.04    0.00 2369073/2369881     ICoDF_HTM::CreateTrixelChild(ICoDF_HTM::trixel_s*, unsigned short&) [9]
+[24]     0.4    0.04    0.00 2369881         ICoDF_HTM::InitTrixel(ICoDF_HTM::trixel_s*) [24]
+-----------------------------------------------
+                0.03    0.00 2907379/2907379     ICoDF_HTM::HTM::TwoPointsCorrelation(double&, double&) [8]
+[25]     0.3    0.03    0.00 2907379         std::_Deque_base<ICoDF_HTM::trixel_s*, std::allocator<ICoDF_HTM::trixel_s*> >::~_Deque_base() [25]
+-----------------------------------------------
+                0.02    0.00 2907380/2907380     ICoDF_HTM::HTM::TwoPointsCorrelation(double&, double&) [8]
+[26]     0.2    0.02    0.00 2907380         std::_Deque_base<ICoDF_HTM::trixel_s*, std::allocator<ICoDF_HTM::trixel_s*> >::_M_initialize_map(unsigned long) [26]
+-----------------------------------------------
+                0.02    0.00 1453689/1453689     ICoDF_HTM::HTM::TwoPointsCorrelation(double&, double&) [8]
+[27]     0.2    0.02    0.00 1453689         ICoDF_HTM::IsCorrectDEC(double&) [27]
+-----------------------------------------------
+                0.02    0.00  966000/966000      ICoDF_HTM::HTMAsciiParser::UniformNumberGenerator(double const&, double const&, double const&, double const&) [17]
+[28]     0.2    0.02    0.00  966000         double std::generate_canonical<double, 53ul, std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul> >(std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>&) [28]
+-----------------------------------------------
+                0.00    0.00   15165/252203      ICoDF_HTM::HTM::AddPoint(double const&, double const&) [15]
+                0.02    0.00  237038/252203      ICoDF_HTM::HTM::AssignPoint(ICoDF_HTM::PointInfo_s*) [2]
+[29]     0.2    0.02    0.00  252203         void std::deque<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::_M_push_back_aux<ICoDF_HTM::PointInfo_s* const&>(ICoDF_HTM::PointInfo_s* const&) [29]
+-----------------------------------------------
+                                                 <spontaneous>
+[30]     0.1    0.01    0.00                 ICoDF_HTM::HTM::Delete() [30]
+                0.00    0.00       1/1           ICoDF_HTM::HTM::~HTM() [32]
+-----------------------------------------------
+                                                 <spontaneous>
+[31]     0.1    0.01    0.00                 ICoDF_HTM::HTM::CreateOctahedron() [31]
+                0.00    0.00     808/808         ICoDF_HTM::CreateRootTrixel(std::string) [37]
+                0.00    0.00     808/26075337     _init [51]
+-----------------------------------------------
+                0.00    0.00       1/1           ICoDF_HTM::HTM::Delete() [30]
+[32]     0.0    0.00    0.00       1         ICoDF_HTM::HTM::~HTM() [32]
+                0.00    0.00       1/101         std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_erase(std::_Rb_tree_node<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >*) [21]
+                0.00    0.00       1/3           ICoDF::LogService::AddMessage(short, std::string, std::string) [38]
+                0.00    0.00       2/4           std::_Deque_base<double, std::allocator<double> >::~_Deque_base() [57]
+                0.00    0.00       2/26075337     _init [51]
+                0.00    0.00       1/2           ICoDF::LogService::GetInstance() [58]
+                0.00    0.00       1/2           std::_Deque_base<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::~_Deque_base() [60]
+-----------------------------------------------
+                0.00    0.00    4830/9660        ICoDF_HTM::HTM::getMaxRa() [34]
+                0.00    0.00    4830/9660        ICoDF_HTM::HTM::getMaxDec() [35]
+[33]     0.0    0.00    0.00    9660         void std::__adjust_heap<std::_Deque_iterator<double, double&, double*>, long, double, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, long, long, double, std::greater<double>) [33]
+                0.00    0.00    9660/985320      void std::__push_heap<std::_Deque_iterator<double, double&, double*>, long, double, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, long, long, double, std::greater<double>) [23]
+-----------------------------------------------
+                                                 <spontaneous>
+[34]     0.0    0.00    0.00                 ICoDF_HTM::HTM::getMaxRa() [34]
+                0.00    0.00    4830/9660        void std::__adjust_heap<std::_Deque_iterator<double, double&, double*>, long, double, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, long, long, double, std::greater<double>) [33]
+                0.00    0.00      75/150         std::deque<double, std::allocator<double> >::_M_pop_back_aux() [55]
+-----------------------------------------------
+                                                 <spontaneous>
+[35]     0.0    0.00    0.00                 ICoDF_HTM::HTM::getMaxDec() [35]
+                0.00    0.00    4830/9660        void std::__adjust_heap<std::_Deque_iterator<double, double&, double*>, long, double, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, long, long, double, std::greater<double>) [33]
+                0.00    0.00      75/150         std::deque<double, std::allocator<double> >::_M_pop_back_aux() [55]
+-----------------------------------------------
+                0.00    0.00    2957/2957        std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_unique_<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::_Rb_tree_const_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&) [12]
+[36]     0.0    0.00    0.00    2957         std::pair<std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_unique<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&) [36]
+                0.00    0.00    2957/3305467     std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&) [20]
+-----------------------------------------------
+                0.00    0.00     808/808         ICoDF_HTM::HTM::CreateOctahedron() [31]
+[37]     0.0    0.00    0.00     808         ICoDF_HTM::CreateRootTrixel(std::string) [37]
+                0.00    0.00     808/2369881     ICoDF_HTM::InitTrixel(ICoDF_HTM::trixel_s*) [24]
+-----------------------------------------------
+                0.00    0.00       1/3           ICoDF_HTM::HTM::~HTM() [32]
+                0.00    0.00       1/3           ICoDF_HTM::HTM::HTM() [41]
+                0.00    0.00       1/3           ICoDF::LogService::~LogService() [39]
+[38]     0.0    0.00    0.00       3         ICoDF::LogService::AddMessage(short, std::string, std::string) [38]
+                0.00    0.00     311/2369384     char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [22]
+                0.00    0.00     622/26075337     _init [51]
+-----------------------------------------------
+                0.00    0.00       1/1           ICoDF::LogService::Delete() [42]
+[39]     0.0    0.00    0.00       1         ICoDF::LogService::~LogService() [39]
+                0.00    0.00       1/3           ICoDF::LogService::AddMessage(short, std::string, std::string) [38]
+                0.00    0.00       2/26075337     _init [51]
+-----------------------------------------------
+                0.00    0.00       1/1           ICoDF_HTM::HTMAsciiParser::HTMAsciiParser() [43]
+[40]     0.0    0.00    0.00       1         ICoDF_HTM::HTM::GetInstance() [40]
+                0.00    0.00       1/1           ICoDF_HTM::HTM::HTM() [41]
+-----------------------------------------------
+                0.00    0.00       1/1           ICoDF_HTM::HTM::GetInstance() [40]
+[41]     0.0    0.00    0.00       1         ICoDF_HTM::HTM::HTM() [41]
+                0.00    0.00       1/3           ICoDF::LogService::AddMessage(short, std::string, std::string) [38]
+                0.00    0.00       4/4           std::_Deque_base<double, std::allocator<double> >::_M_initialize_map(unsigned long) [56]
+                0.00    0.00       2/2           std::_Deque_base<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::_M_initialize_map(unsigned long) [59]
+                0.00    0.00       2/4           std::_Deque_base<double, std::allocator<double> >::~_Deque_base() [57]
+                0.00    0.00       2/2           void std::make_heap<std::_Deque_iterator<double, double&, double*>, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, std::_Deque_iterator<double, double&, double*>, std::greater<double>) [61]
+                0.00    0.00       2/26075337     _init [51]
+                0.00    0.00       1/2           std::_Deque_base<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::~_Deque_base() [60]
+                0.00    0.00       1/2           ICoDF::LogService::GetInstance() [58]
+-----------------------------------------------
+                                                 <spontaneous>
+[42]     0.0    0.00    0.00                 ICoDF::LogService::Delete() [42]
+                0.00    0.00       1/1           ICoDF::LogService::~LogService() [39]
+-----------------------------------------------
+                                                 <spontaneous>
+[43]     0.0    0.00    0.00                 ICoDF_HTM::HTMAsciiParser::HTMAsciiParser() [43]
+                0.00    0.00       1/1           ICoDF_HTM::HTM::GetInstance() [40]
+-----------------------------------------------
+                0.00    0.00       2/26075337     ICoDF_HTM::HTM::~HTM() [32]
+                0.00    0.00       2/26075337     ICoDF_HTM::HTM::HTM() [41]
+                0.00    0.00       2/26075337     ICoDF::LogService::~LogService() [39]
+                0.00    0.00     100/26075337     ICoDF_HTM::HTMAsciiParser::UniformNumberGenerator(double const&, double const&, double const&, double const&) [17]
+                0.00    0.00     622/26075337     ICoDF::LogService::AddMessage(short, std::string, std::string) [38]
+                0.00    0.00     800/26075337     ICoDF_HTM::HTM::DeleteOctahedron() [5]
+                0.00    0.00     808/26075337     ICoDF_HTM::HTM::CreateOctahedron() [31]
+                0.00    0.00  936192/26075337     ICoDF_HTM::HTM::Display(ICoDF_HTM::trixel_s*, std::basic_ofstream<char, std::char_traits<char> >&) [7]
+                0.00    0.00  975761/26075337     ICoDF_HTM::HTMAsciiParser::Parse(std::string&) [13]
+                0.00    0.00 1906892/26075337     std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_erase(std::_Rb_tree_node<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >*) [21]
+                0.00    0.00 2345404/26075337     ICoDF_HTM::HTM::FreeAllTrixels(ICoDF_HTM::trixel_s*) [10]
+                0.00    0.00 3767850/26075337     ICoDF_HTM::HTM::AssignPoint(ICoDF_HTM::PointInfo_s*) [2]
+                0.00    0.00 16140902/26075337     ICoDF_HTM::HTM::CreateHTM() [1]
+[51]     0.0    0.00    0.00 26075337         _init [51]
+-----------------------------------------------
+                0.00    0.00 15170462/15170462     ICoDF_HTM::HTM::AssignPoint(ICoDF_HTM::PointInfo_s*) [2]
+[52]     0.0    0.00    0.00 15170462         ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, ICoDF_HTM::PointInfo_s*) [52]
+-----------------------------------------------
+                0.00    0.00 1398575/1398575     ICoDF_HTM::HTM::AssignPoint(ICoDF_HTM::PointInfo_s*) [2]
+[53]     0.0    0.00    0.00 1398575         ICoDF_HTM::CreateTrixelChildren(ICoDF_HTM::trixel_s*) [53]
+-----------------------------------------------
+                0.00    0.00   15242/15242       ICoDF_HTM::HTM::itemsToStore(double const&, double const&) [16]
+[54]     0.0    0.00    0.00   15242         void std::deque<double, std::allocator<double> >::_M_push_back_aux<double const&>(double const&) [54]
+-----------------------------------------------
+                0.00    0.00      75/150         ICoDF_HTM::HTM::getMaxRa() [34]
+                0.00    0.00      75/150         ICoDF_HTM::HTM::getMaxDec() [35]
+[55]     0.0    0.00    0.00     150         std::deque<double, std::allocator<double> >::_M_pop_back_aux() [55]
+-----------------------------------------------
+                0.00    0.00       4/4           ICoDF_HTM::HTM::HTM() [41]
+[56]     0.0    0.00    0.00       4         std::_Deque_base<double, std::allocator<double> >::_M_initialize_map(unsigned long) [56]
+-----------------------------------------------
+                0.00    0.00       2/4           ICoDF_HTM::HTM::~HTM() [32]
+                0.00    0.00       2/4           ICoDF_HTM::HTM::HTM() [41]
+[57]     0.0    0.00    0.00       4         std::_Deque_base<double, std::allocator<double> >::~_Deque_base() [57]
+-----------------------------------------------
+                0.00    0.00       1/2           ICoDF_HTM::HTM::~HTM() [32]
+                0.00    0.00       1/2           ICoDF_HTM::HTM::HTM() [41]
+[58]     0.0    0.00    0.00       2         ICoDF::LogService::GetInstance() [58]
+                0.00    0.00       1/1           ICoDF::LogService::LogService() [67]
+-----------------------------------------------
+                0.00    0.00       2/2           ICoDF_HTM::HTM::HTM() [41]
+[59]     0.0    0.00    0.00       2         std::_Deque_base<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::_M_initialize_map(unsigned long) [59]
+-----------------------------------------------
+                0.00    0.00       1/2           ICoDF_HTM::HTM::~HTM() [32]
+                0.00    0.00       1/2           ICoDF_HTM::HTM::HTM() [41]
+[60]     0.0    0.00    0.00       2         std::_Deque_base<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::~_Deque_base() [60]
+-----------------------------------------------
+                0.00    0.00       2/2           ICoDF_HTM::HTM::HTM() [41]
+[61]     0.0    0.00    0.00       2         void std::make_heap<std::_Deque_iterator<double, double&, double*>, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, std::_Deque_iterator<double, double&, double*>, std::greater<double>) [61]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [92]
+[62]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN5ICoDF10LogService10_singletonE [62]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [92]
+[63]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN9ICoDF_HTM14HTMAsciiParser5ParseERSs [63]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [92]
+[64]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN9ICoDF_HTM20CreateTrixelChildrenEPNS_8trixel_sE [64]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [92]
+[65]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN9ICoDF_HTM3HTM10_singletonE [65]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [92]
+[66]     0.0    0.00    0.00       1         _GLOBAL__sub_I_main [66]
+-----------------------------------------------
+                0.00    0.00       1/1           ICoDF::LogService::GetInstance() [58]
+[67]     0.0    0.00    0.00       1         ICoDF::LogService::LogService() [67]
+-----------------------------------------------
+
+Index by function name
+
+  [62] _GLOBAL__sub_I__ZN5ICoDF10LogService10_singletonE (logservice.cpp) [16] ICoDF_HTM::HTM::itemsToStore(double const&, double const&) [26] std::_Deque_base<ICoDF_HTM::trixel_s*, std::allocator<ICoDF_HTM::trixel_s*> >::_M_initialize_map(unsigned long)
+  [63] _GLOBAL__sub_I__ZN9ICoDF_HTM14HTMAsciiParser5ParseERSs (htmasciiparser.cpp) [10] ICoDF_HTM::HTM::FreeAllTrixels(ICoDF_HTM::trixel_s*) [25] std::_Deque_base<ICoDF_HTM::trixel_s*, std::allocator<ICoDF_HTM::trixel_s*> >::~_Deque_base()
+  [64] _GLOBAL__sub_I__ZN9ICoDF_HTM20CreateTrixelChildrenEPNS_8trixel_sE (trixel.cpp) [31] ICoDF_HTM::HTM::CreateOctahedron() [56] std::_Deque_base<double, std::allocator<double> >::_M_initialize_map(unsigned long)
+  [65] _GLOBAL__sub_I__ZN9ICoDF_HTM3HTM10_singletonE (htm.cpp) [5] ICoDF_HTM::HTM::DeleteOctahedron() [57] std::_Deque_base<double, std::allocator<double> >::~_Deque_base()
+  [66] _GLOBAL__sub_I_main (main.cpp) [19] ICoDF_HTM::HTM::SelectRootTrixel(ICoDF_HTM::PointInfo_s*) [29] void std::deque<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::_M_push_back_aux<ICoDF_HTM::PointInfo_s* const&>(ICoDF_HTM::PointInfo_s* const&)
+  [38] ICoDF::LogService::AddMessage(short, std::string, std::string) [8] ICoDF_HTM::HTM::TwoPointsCorrelation(double&, double&) [55] std::deque<double, std::allocator<double> >::_M_pop_back_aux()
+  [58] ICoDF::LogService::GetInstance() [30] ICoDF_HTM::HTM::Delete() [54] void std::deque<double, std::allocator<double> >::_M_push_back_aux<double const&>(double const&)
+  [67] ICoDF::LogService::LogService() [7] ICoDF_HTM::HTM::Display(ICoDF_HTM::trixel_s*, std::basic_ofstream<char, std::char_traits<char> >&) [20] std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&)
+  [39] ICoDF::LogService::~LogService() [15] ICoDF_HTM::HTM::AddPoint(double const&, double const&) [36] std::pair<std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_unique<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&)
+  [24] ICoDF_HTM::InitTrixel(ICoDF_HTM::trixel_s*) [1] ICoDF_HTM::HTM::CreateHTM() [12] std::_Rb_tree_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_insert_unique_<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >(std::_Rb_tree_const_iterator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>&&)
+  [18] ICoDF_HTM::IsCorrectRA(double&) [41] ICoDF_HTM::HTM::HTM() [11] std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::find(std::string const&)
+  [27] ICoDF_HTM::IsCorrectDEC(double&) [32] ICoDF_HTM::HTM::~HTM() [21] std::_Rb_tree<std::string, std::pair<std::string const, ICoDF_HTM::PointInfo_s*>, std::_Select1st<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >, std::less<std::string>, std::allocator<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> > >::_M_erase(std::_Rb_tree_node<std::pair<std::string const, ICoDF_HTM::PointInfo_s*> >*)
+  [17] ICoDF_HTM::HTMAsciiParser::UniformNumberGenerator(double const&, double const&, double const&, double const&) [52] ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, ICoDF_HTM::PointInfo_s*) [23] void std::__push_heap<std::_Deque_iterator<double, double&, double*>, long, double, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, long, long, double, std::greater<double>)
+  [37] ICoDF_HTM::CreateRootTrixel(std::string) [4] ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, Eigen::Matrix<double, 3, 1, 0, 3, 1>&) [33] void std::__adjust_heap<std::_Deque_iterator<double, double&, double*>, long, double, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, long, long, double, std::greater<double>)
+   [9] ICoDF_HTM::CreateTrixelChild(ICoDF_HTM::trixel_s*, unsigned short&) [3] ICoDF_HTM::GetIndex(ICoDF_HTM::trixel_s*, double&, double&) [28] double std::generate_canonical<double, 53ul, std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul> >(std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>&)
+  [53] ICoDF_HTM::CreateTrixelChildren(ICoDF_HTM::trixel_s*) [22] char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [61] void std::make_heap<std::_Deque_iterator<double, double&, double*>, std::greater<double> >(std::_Deque_iterator<double, double&, double*>, std::_Deque_iterator<double, double&, double*>, std::greater<double>)
+   [6] ICoDF_HTM::ComputeTrixelMidpoints(ICoDF_HTM::trixel_s*) [14] std::_List_base<ICoDF_HTM::trixel_s*, std::allocator<ICoDF_HTM::trixel_s*> >::_M_clear() [51] _init
+   [2] ICoDF_HTM::HTM::AssignPoint(ICoDF_HTM::PointInfo_s*) [59] std::_Deque_base<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::_M_initialize_map(unsigned long)
+  [40] ICoDF_HTM::HTM::GetInstance() [60] std::_Deque_base<ICoDF_HTM::PointInfo_s*, std::allocator<ICoDF_HTM::PointInfo_s*> >::~_Deque_base()
