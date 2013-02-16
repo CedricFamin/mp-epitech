@@ -26,7 +26,7 @@ namespace SIMD {
                 double _z;
                 double _0;
             };
-        }
+        };
         
     public:
         Vector3f(double x, double y, double z)
@@ -37,9 +37,9 @@ namespace SIMD {
         {
         }
         
-        inline Vector3f operator-(const Vector3d& v) const
+        inline Vector3f operator-(const Vector3f& v) const
         {
-            return Vector3d(this->_x - v._x, this->_y - v._y, this->_z - v._z);
+            return Vector3f(this->_x - v._x, this->_y - v._y, this->_z - v._z);
         }
         
         inline Vector3f operator/(const float& nb) const
@@ -47,12 +47,12 @@ namespace SIMD {
             return Vector3f(this->_x / nb, this->_y / nb, this->_z / nb);
         }
         
-        inline Vector3f operator+(const Vector3d& v) const
+        inline Vector3f operator+(const Vector3f& v) const
         {
             return Vector3f(this->_x + v._x, this->_y + v._y, this->_z + v._z);
         }
         
-        inline Vector3f cross(const Vector3d& v) const
+        inline Vector3f cross(const Vector3f& v) const
         {
             return Vector3f(this->_y * v._z - this->_z * v._y, this->_z * v._x - this->_x * v._z, this->_x * v._y - this->_y * v._x);
         }
@@ -62,7 +62,7 @@ namespace SIMD {
         //    return (this->_x * x + this->_y * y + this->_z * z);
         //}
         
-        inline float dot(const Vector3d& v) const
+        inline float dot(const Vector3f& v) const
         {
             return (this->_x * v._x + this->_y * v._y + this->_z * v._z);
         }
@@ -71,7 +71,7 @@ namespace SIMD {
         {
             return (std::sqrt(this->_x * this->_x + this->_y * this->_y + this->_z * this->_z));
         }
-    }
+    };
 }
 
 struct Vector3d

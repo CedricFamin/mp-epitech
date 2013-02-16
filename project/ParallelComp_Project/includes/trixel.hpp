@@ -25,16 +25,24 @@ namespace ICoDF_HTM
     /// Structure that define a trixel (htm base object)
     typedef struct trixel_s
     {
+        trixel_s()
+        : _midPointsComputed(false)
+        {
+            _midPoints[0] = Eigen::Vector3d(0, 0, 0);
+            _midPoints[1] = Eigen::Vector3d(0, 0, 0);
+            _midPoints[2] = Eigen::Vector3d(0, 0, 0);
+        }
+        
         struct trixel_s**			_children;	//< trixel's subtrixels
         Eigen::Vector3d			    _vertices[3];	//< Trixel's vertices
+        Eigen::Vector3d             _midPoints[3];
+        
+        bool                        _midPointsComputed;
+        
         bool				        _reverse;	//< is an upside-down trixel ?
         std::string				    _HTMId;		//< N10120112121101
         unsigned int			    _nbChildObject; //< Number of objects contained in this trixel.
         struct PointInfo_s*			_info;		//< Point information structure for the actual
-        /*
-        void* operator new(size_t);
-        void operator delete(void*);
-        */
     } trixel_t;
     
     /// Delte the given trixel (but not the PointInfo_t)
@@ -54,9 +62,6 @@ namespace ICoDF_HTM
     
     /// Create a container for the 4 trixels that correspond to a new level
     trixel_t** CreateTrixelChildren(trixel_t* parent);
-    
-    /// Return which subtrixel the point is (ra dec version)
-    unsigned short int GetIndex(trixel_t* trixel, double& ra, double& dec);
     
     /// Return which subtrixel the point is (vector version)
     unsigned short int GetIndex(trixel_t* trixel, Eigen::Vector3d& pointVector);

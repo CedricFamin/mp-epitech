@@ -6,6 +6,18 @@ void ICoDF_HTM::HTM::AddPoint(const double& ra, const double& dec)
 	PointInfo_t* info = new PointInfo_t;
 	info->_ra = ra;
 	info->_dec = dec;
+    info->_position = Eigen::Vector3d(0, 0, 0);
+    if (IsCorrectRA(ra) && IsCorrectDEC(dec))
+    {
+        if (info->_position == Eigen::Vector3d(0, 0, 0))
+        {
+            double rProjection = sin(90 - abs(dec));
+            double x = rProjection * cos(ra);
+            double y = rProjection * sin(ra);
+            double z = cos(90 - abs(dec));
+            info->_position = Eigen::Vector3d(x, y, z);
+        }
+    }
 	if (this->SelectRootTrixel(info))
 		this->_pointList.push(info);
 	else
@@ -32,22 +44,13 @@ void ICoDF_HTM::HTM::AssignPoint(PointInfo_t* pt)
     {
 		unsigned short int index = GetIndex(pt->_current, pt);
 		if (index == (unsigned int short)~0)
-		{
 			return;
-		}
 		
-		if (pt->_current->_children[index] != NULL)
-		{
-			pt->_current = pt->_current->_children[index];
-			
-			this->_pointList.push(pt);
-		}
-		else
-		{
+		if (pt->_current->_children[index] == NULL)
 			pt->_current->_children[index] = CreateTrixelChild(pt->_current, index);
-			pt->_current = pt->_current->_children[index];
-			this->_pointList.push(pt);
-		}
+        pt->_current = pt->_current->_children[index];
+        this->_pointList.push(pt);
+		
     }
 	else if (pt->_current->_nbChildObject == 1)
     {
@@ -56,14 +59,10 @@ void ICoDF_HTM::HTM::AssignPoint(PointInfo_t* pt)
 		PointInfo_t* old = pt->_current->_info;
 		pt->_current->_info = NULL;
 		unsigned short int indexOld = GetIndex(old->_current, old);
-		if (indexCurrent == (unsigned short int)~0)
-		{
+		if (indexCurrent == (unsigned short int)~0 ||
+            indexOld == (unsigned short int)~0)
 			return;
-		}
-		if (indexOld == (unsigned short int)~0)
-		{
-			return;
-		}
+		
 		if (pt->_current->_children == NULL)
 		{
 			CreateTrixelChildren(pt->_current);
@@ -97,14 +96,11 @@ inline std::pair<double, double>       ICoDF_HTM::HTM::CalcCoordPoint(std::pair<
 
 bool ICoDF_HTM::HTM::SelectRootTrixel(PointInfo_t* pt)
 {
+    Eigen::Vector3d p = pt->_position;
+    
 	for (int i = 0; i < 8; ++i)
     {
 		Eigen::Vector3d* v = this->_octahedron->_rootTrixels[i]->_vertices;
-		double rProjection = sin(90 - abs(pt->_dec));
-		double x = rProjection * cos(pt->_ra);
-		double y = rProjection * sin(pt->_ra);
-		double z = cos(90 - abs(pt->_dec));
-		Eigen::Vector3d p(x, y, z);
 		
 		if (v[0].cross(v[1]).dot(p) > 0 &&
 			v[1].cross(v[2]).dot(p) > 0 &&
@@ -132,11 +128,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 		PointInfo_t* pt = point.second;
 		if (IsCorrectRA(pt->_ra) && IsCorrectDEC(pt->_dec))
 		{
-			double rProjection = sin(90 - abs(pt->_dec));
-			double x = rProjection * cos(pt->_ra);
-			double y = rProjection * sin(pt->_ra);
-			double z = cos(90 - abs(pt->_dec));
-			Eigen::Vector3d p(x, y, z);
+			Eigen::Vector3d p = pt->_position;
 			
 			std::queue<trixel_t*> workingList;
 			

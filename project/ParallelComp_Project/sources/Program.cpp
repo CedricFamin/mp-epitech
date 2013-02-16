@@ -90,7 +90,7 @@ void Program::Launch()
     
     std::vector<std::pair<std::thread*, ExecutionQueue*>> execQueue;
     std::vector<WorkerThread*> workerList;
-    unsigned int nbThread=  std::thread::hardware_concurrency();
+    unsigned int nbThread =  std::thread::hardware_concurrency() * 2;
     for (int i = 0; i < nbThread; ++i)
     {
         execQueue.push_back(std::make_pair((std::thread*)0, new ExecutionQueue()));

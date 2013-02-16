@@ -40,14 +40,23 @@ trixel_t** ICoDF_HTM::CreateTrixelChildren(trixel_t *parent)
 // -------------------------------------------------------------------------------
 void ICoDF_HTM::ComputeTrixelMidpoints(trixel_t* trixel, Eigen::Vector3d* outMidPoint)
 {
-	Eigen::Vector3d tmp;
-	
-	tmp = trixel->_vertices[1] + trixel->_vertices[2];
-	outMidPoint[0] = tmp / tmp.norm();
-	tmp = trixel->_vertices[0] + trixel->_vertices[2];
-	outMidPoint[1] = tmp / tmp.norm();
-	tmp = trixel->_vertices[0] + trixel->_vertices[1];
-	outMidPoint[2] = tmp / tmp.norm();
+ 
+    if (!trixel->_midPointsComputed)
+    {
+        Eigen::Vector3d tmp;
+        
+        tmp = trixel->_vertices[1] + trixel->_vertices[2];
+        trixel->_midPoints[0] = tmp / tmp.norm();
+        tmp = trixel->_vertices[0] + trixel->_vertices[2];
+        trixel->_midPoints[1] = tmp / tmp.norm();
+        tmp = trixel->_vertices[0] + trixel->_vertices[1];
+        trixel->_midPoints[2] = tmp / tmp.norm();
+        trixel->_midPointsComputed = true;
+    }
+    
+    outMidPoint[0] = trixel->_midPoints[0];
+    outMidPoint[1] = trixel->_midPoints[1];
+    outMidPoint[2] = trixel->_midPoints[2];
 }
 
 // -------------------------------------------------------------------------------
@@ -153,37 +162,6 @@ void ICoDF_HTM::ClearTrixel(trixel_t *trixel)
 	ClearTrixelChildren(trixel);
 }
 
-// ---------------------------------------------------------------------
-// GETINDEX (astral coordinates version)
-unsigned short int ICoDF_HTM::GetIndex(trixel_t* trixel, double& ra, double& dec)
-{
-	if (IsCorrectRA(ra) && IsCorrectDEC(dec))
-    {
-		double rProjection = sin(90 - abs(dec));
-		double x = rProjection * cos(ra);
-		double y = rProjection * sin(ra);
-		double z = cos(90 - abs(dec));
-		Eigen::Vector3d p(x, y, z);
-		unsigned short int ret = GetIndex(trixel, p);
-		if (ret == ~0)
-		{
-			std::stringstream tmp;
-			tmp << " T0 " << std::endl << trixel->_vertices[0] << std::endl
-			<< " T1 " << std::endl << trixel->_vertices[1] << std::endl
-			<< " T2 " << std::endl << trixel->_vertices[2] << std::endl
-			<< " P " << std::endl << p << std::endl;
-		}
-		return ret;
-    }
-	else
-    {
-		std::stringstream tmp;
-		tmp << "Given <ra> [" << ra << "] or <dec> [" << dec << "] is out of bounds";
-		LS_ADDMSG(LogService::WARNING, "ICoDF_HTM", tmp.str());
-    }
-	return (unsigned short int)~0;
-}
-
 // --------------------------------------------------------------------
 // GETINDEX (vector version)
 unsigned short int ICoDF_HTM::GetIndex(trixel_t* trixel, Eigen::Vector3d& p)
@@ -195,7 +173,7 @@ unsigned short int ICoDF_HTM::GetIndex(trixel_t* trixel, Eigen::Vector3d& p)
 		Eigen::Vector3d* v = trixel->_vertices;
 		Eigen::Vector3d w[3];
         ComputeTrixelMidpoints(trixel, w);
-		
+        
         // HERE
 		if (v[0].cross(w[2]).dot(p) > 0 &&
 			w[2].cross(w[1]).dot(p) > 0 &&
@@ -214,10 +192,7 @@ unsigned short int ICoDF_HTM::GetIndex(trixel_t* trixel, Eigen::Vector3d& p)
 				 w[2].cross(w[0]).dot(p) > 0)
 			index = 3;
 		
-		if (index == ~0)
-			std::cout << "Incorrect : " << trixel->_HTMId << std::endl << "--- v1" << std::endl <<  trixel->_vertices[0] << std::endl << "--- v2" << std::endl << trixel->_vertices[1] << std::endl << "--- v3" << std::endl << trixel->_vertices[2] << std::endl << "--- p" << std::endl << p << std::endl;
-		
-		return index;
+        return index;
     }
 	else
     {
@@ -230,8 +205,21 @@ unsigned short int ICoDF_HTM::GetIndex(trixel_t* trixel, Eigen::Vector3d& p)
 // GETINDEX (PointInfo version)
 unsigned short int ICoDF_HTM::GetIndex(trixel_t* trixel, PointInfo_t* pointInfo)
 {
-	unsigned short int index = GetIndex(trixel, pointInfo->_ra, pointInfo->_dec);
-	return index;
+    double ra = pointInfo->_ra;
+    double dec = pointInfo->_dec;
+    
+    if (IsCorrectRA(ra) && IsCorrectDEC(dec))
+    {
+		unsigned short int index = GetIndex(trixel, pointInfo->_position);
+        return index;
+    }
+	else
+    {
+		std::stringstream tmp;
+		tmp << "Given <ra> [" << ra << "] or <dec> [" << dec << "] is out of bounds";
+		LS_ADDMSG(LogService::WARNING, "ICoDF_HTM", tmp.str());
+    }
+	return (unsigned short int)~0;
 }
 
 // --------------------------------------------------------------------
