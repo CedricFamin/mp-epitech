@@ -42,7 +42,7 @@ void Program::Init(ProgramConfig const & config)
     _config = config;
     
     _htm = new HTM();
-    _parser = new HTMAsciiParser(_htm);
+    _parser = new HTMAsciiParser();
     this->Log(LogService::NOTICE, "Computing Normal Catalog...");
     
     _htm->CreateOctahedron();
@@ -52,10 +52,10 @@ void Program::Init(ProgramConfig const & config)
     
     this->Log(LogService::NOTICE, "HTM Created for Normal Catalog");
     
-    _raMin = _htm->getMinRa();
-    _raMax = _htm->getMaxRa();
-    _decMin = _htm->getMinDec();
-    _decMax = _htm->getMaxDec();
+    _raMin = _parser->getMinRa();
+    _raMax = _parser->getMaxRa();
+    _decMin = _parser->getMinDec();
+    _decMax = _parser->getMaxDec();
     
     std::stringstream tmp;
     tmp << "Computing Mean values for Random and Hybrid Catalog on " << this->_config.loop << " loops using " << _parser->getNbObj() << " random objects...";

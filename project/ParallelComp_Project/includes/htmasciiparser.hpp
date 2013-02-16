@@ -32,12 +32,21 @@ namespace ICoDF_HTM
         std::vector<std::pair<double, double>> const & getObjects(void) const;
 		
 		// DEFAULT CTOR
-		HTMAsciiParser(HTM * parHtm);
+		HTMAsciiParser();
 		
 		// DEFAULT DTOR
 		~HTMAsciiParser(void);
+        
+        double getMinRa()  const { return _minRa;  }
+        double getMinDec() const { return _minDec; }
+        double getMaxRa()  const { return _maxRa;  }
+        double getMaxDec() const { return _maxDec; }
 	private:
 		unsigned int                           nbObj;
 		std::vector<std::pair<double, double>> _objects;
+        double                                 _minRa;
+        double                                 _minDec;
+        double                                 _maxRa;
+        double                                 _maxDec;
 	};
 }

@@ -86,45 +86,6 @@ void ICoDF_HTM::HTM::AssignPoint(PointInfo_t* pt)
     }
 }
 
-double ICoDF_HTM::HTM::getMinRa(void)
-{
-	return this->_raQueue.top();
-}
-
-double ICoDF_HTM::HTM::getMinDec(void)
-{
-	return this->_decQueue.top();
-}
-
-double ICoDF_HTM::HTM::getMaxRa(void)
-{
-	double raMax = 0;
-	while (!this->_raQueue.empty())
-    {
-		raMax = this->_raQueue.top();
-		this->_raQueue.pop();
-    }
-	return raMax;
-}
-
-double ICoDF_HTM::HTM::getMaxDec(void)
-{
-	double decMax = 0;
-	while (!this->_decQueue.empty())
-    {
-		decMax = this->_decQueue.top();
-		this->_decQueue.pop();
-    }
-	return decMax;
-}
-
-void ICoDF_HTM::HTM::itemsToStore(const double& ra, const double& dec)
-{
-	this->_raQueue.push(ra);
-	this->_decQueue.push(dec);
-}
-
-
 inline std::pair<double, double>       ICoDF_HTM::HTM::CalcCoordPoint(std::pair<double, double>& a, std::pair<double, double>& b)
 {
 	std::pair<double, double>	result;
@@ -156,34 +117,6 @@ bool ICoDF_HTM::HTM::SelectRootTrixel(PointInfo_t* pt)
 	return false;
 }
 
-inline double				ICoDF_HTM::HTM::Scal(std::pair<double, double>& v1, std::pair<double, double>& v2) const
-{
-	return ((v1.first * v2.first) + (v1.second * v2.second));
-}
-
-bool				ICoDF_HTM::HTM::CheckPointInTriangle(std::pair<double, double> A,
-														 std::pair<double, double> B,
-														 std::pair<double, double> C,
-														 std::pair<double, double> P)
-{
-	std::pair<double, double> 	v0 = CalcCoordPoint(C, A);
-	std::pair<double, double> 	v1 = CalcCoordPoint(B, A);
-	std::pair<double, double> 	v2 = CalcCoordPoint(P, A);
-	
-	const double			dot00 = Scal(v0, v0);
-	const double			dot01 = Scal(v0, v1);
-	const double			dot02 = Scal(v0, v2);
-	const double			dot11 = Scal(v1, v1);
-	const double			dot12 = Scal(v1, v2);
-	
-	const double       		invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
-	
-	const double       		u = (dot11 * dot02 - dot01 * dot12) * invDenom;
-	const double       		v = (dot00 * dot12 - dot01 * dot02) * invDenom;
-	
-	return ((u >= 0) && (v >= 0) && (u + v < 1));
-}
-
 /// TwoPointsCorrelation
 unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 {
@@ -193,7 +126,6 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 	double infLimit = radius - delta;
 	if (infLimit < 0) infLimit = 0;
 	double supLimit = radius + delta;
-	HTMConstraint_t constraint;
 	
     for (std::pair<std::string, PointInfo_t*> const & point : this->_points)
     {
@@ -229,7 +161,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 						supInside++;
 				}
 				if (supInside == 3 && infInside == 0)
-					constraint._inside.push_back(this->_octahedron->_rootTrixels[i]);
+                    nbPairs += this->_octahedron->_rootTrixels[i]->_nbChildObject;
 				if ((supInside == 3 && infInside > 0) || supInside > 0)
 					workingList.push(this->_octahedron->_rootTrixels[i]);
 				else
@@ -248,7 +180,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 							  _octahedron->_rootTrixels[i]->_vertices[1].cross(_octahedron->_rootTrixels[i]->_vertices[2]).dot(p) < 0 &&
 							  _octahedron->_rootTrixels[i]->_vertices[2].cross(_octahedron->_rootTrixels[i]->_vertices[0]).dot(p)))
 						{
-							constraint._partial.push_back(_octahedron->_rootTrixels[i]);
+                            nbPairs += 1;
 						}
 					}
 				}
@@ -274,7 +206,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 					++supInside;
 				
 				if (supInside == 3 && infInside == 0)
-					constraint._inside.push_back(tmp);
+                    nbPairs += tmp->_nbChildObject;
 				else if ((supInside == 3 && infInside > 0)
 						 || supInside > 0)
 				{
@@ -285,7 +217,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 								workingList.push(tmp->_children[i]);
 					}
 					else
-						constraint._partial.push_back(tmp);
+                        nbPairs += 1;
 				}
 				else
 				{
@@ -303,68 +235,14 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 							  tmp->_vertices[1].cross(tmp->_vertices[2]).dot(p) < 0 &&
 							  tmp->_vertices[2].cross(tmp->_vertices[0]).dot(p)))
 						{
-							constraint._partial.push_back(tmp);
+                            nbPairs += 1;
 						}
 					}
 				}
 			}
 		}
     }
-	
-	for (auto it2 = constraint._inside.begin(); it2 != constraint._inside.end(); ++it2)
-    {
-		nbPairs += (*it2)->_nbChildObject;
-    }
-	for (auto it2 = constraint._partial.begin(); it2 != constraint._partial.end(); ++it2)
-    {
-		nbPairs += 1;
-    }
 	return nbPairs;
-}
-
-/// SelectOctahedronTrixel
-trixel_t* ICoDF_HTM::HTM::SelectRootOctahedronTrixel(const double& ra, const double& dec)
-{
-	unsigned int trixelNumber = 0;
-	
-	if (CheckPointInTriangle(std::make_pair(0.0, 0.0), std::make_pair(90.0, 0.0), std::make_pair(45.0, 90.0), std::make_pair(ra, dec)))
-    {
-		trixelNumber = 0;
-    }
-	else if (CheckPointInTriangle(std::make_pair(90.0, 0.0), std::make_pair(180.0, 0.0), std::make_pair(135.0, 90.0), std::make_pair(ra, dec)))
-    {
-		trixelNumber = 1;
-    }
-	else if (CheckPointInTriangle(std::make_pair(180.0, 0.0), std::make_pair(270.0, 0.0), std::make_pair(225.0, 90.0), std::make_pair(ra, dec)))
-    {
-		trixelNumber = 2;
-    }
-	else if (CheckPointInTriangle(std::make_pair(270.0, 0.0), std::make_pair(360.0, 0.0), std::make_pair(315.0, 90.0), std::make_pair(ra, dec)))
-    {
-		trixelNumber = 3;
-    }
-	else if (CheckPointInTriangle(std::make_pair(0.0, 0.0), std::make_pair(90.0, 0.0), std::make_pair(45.0, -90.0), std::make_pair(ra, dec)))
-    {
-		trixelNumber = 4;
-    }
-	else if (CheckPointInTriangle(std::make_pair(90.0, 0.0), std::make_pair(180.0, 0.0), std::make_pair(135.0, -90.0), std::make_pair(ra, dec)))
-    {
-		trixelNumber = 5;
-    }
-	else if (CheckPointInTriangle(std::make_pair(180.0, 0.0), std::make_pair(270.0, 0.0), std::make_pair(225.0, -90.0), std::make_pair(ra, dec)))
-    {
-		trixelNumber = 6;
-    }
-	else if (CheckPointInTriangle(std::make_pair(270.0, 0.0), std::make_pair(360.0, 0.0), std::make_pair(315.0, -90.0), std::make_pair(ra, dec)))
-    {
-		trixelNumber = 7;
-    }
-	else
-    {
-		trixelNumber = 8;
-		return NULL;
-    }
-	return this->_octahedron->_rootTrixels[trixelNumber];
 }
 
 void	ICoDF_HTM::HTM::CreateOctahedron(void)
@@ -507,6 +385,7 @@ void	ICoDF_HTM::HTM::DeleteOctahedron(void)
 ICoDF_HTM::HTM::HTM()
 {
     //LS_ADDMSG(LogService::NOTICE, "HTM", "HTM core created");
+    _points.reserve(10000);
 }
 
 ICoDF_HTM::HTM::~HTM()
@@ -534,7 +413,6 @@ void ICoDF_HTM::HTM::GeneratePoint(std::vector<std::pair<double, double>> const 
 {
     for (std::pair<double, double> const & pointDefinition : parPointsDefinition)
     {
-        this->itemsToStore(pointDefinition.first, pointDefinition.second);
         this->AddPoint(pointDefinition.first, pointDefinition.second);
     }
 }

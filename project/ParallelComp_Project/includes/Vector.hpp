@@ -10,7 +10,7 @@ namespace SIMD {
     private:
         union
         {
-            __m128 _xy;
+            __m128d _xy;
             struct
             {
                 double _x;

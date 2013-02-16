@@ -1,3 +1,5 @@
+#include <limits>
+
 #include "../includes/htmasciiparser.hpp"
 
 bool ICoDF_HTM::HTMAsciiParser::Parse(std::string& filename)
@@ -20,6 +22,11 @@ bool ICoDF_HTM::HTMAsciiParser::Parse(std::string& filename)
 				const double nb1 = strtod(str1.c_str(), NULL);
 				const double nb2 = strtod(str2.c_str(), NULL);
 				this->_objects.push_back(std::make_pair(nb1, nb2));
+                
+                if (_minRa  > nb1) _minRa  = nb1;
+                if (_maxRa  < nb1) _maxRa  = nb1;
+                if (_minDec > nb2) _minDec = nb2;
+                if (_maxDec < nb2) _maxDec = nb2;
 				nbObj++;
 			}
 		}
@@ -39,8 +46,12 @@ std::vector<std::pair<double, double>> const & ICoDF_HTM::HTMAsciiParser::getObj
     return this->_objects;
 }
 
-ICoDF_HTM::HTMAsciiParser::HTMAsciiParser(HTM * parHtm)
+ICoDF_HTM::HTMAsciiParser::HTMAsciiParser()
 : nbObj(0)
+, _minRa(std::numeric_limits<double>::max())
+, _minDec(std::numeric_limits<double>::max())
+, _maxRa(std::numeric_limits<double>::min())
+, _maxDec(std::numeric_limits<double>::min())
 {
 }
 
