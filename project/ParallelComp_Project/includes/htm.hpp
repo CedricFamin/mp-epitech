@@ -9,6 +9,7 @@
 #include <fstream>
 #include <map>
 #include <queue>
+#include <unordered_map>
 
 // C includes
 #include <math.h>
@@ -37,8 +38,8 @@ namespace ICoDF_HTM
 	{
 	private:
 		Octahedron_t* _octahedron;				//< base HTM Octahedron
-		
-		std::map<std::string, PointInfo_t*>	_points;	//< map that reference objects by their HTMId
+        
+		std::unordered_map<std::string, PointInfo_t*> _points;	//< map that reference objects by their HTMId
 		
 		std::queue<PointInfo_t*> _pointList;		//< List of points you are working with
 		
@@ -96,10 +97,6 @@ namespace ICoDF_HTM
 		void GeneratePoint(std::vector<std::pair<double, double>> const & parPointsDefinition);
         void LogIntoFile(std::string const & parFilename);
 	private:
-		
-		HTMConstraint_t* SetConstraint(PointInfo_t* pt, double& radius);
-        /// Create a new trixel structure from its parent and the zone index
-        // void CreateTrixelChildren(trixel_t *parent, unsigned int& index);
 		
         ///
 		bool SelectRootTrixel(PointInfo_t* pt);

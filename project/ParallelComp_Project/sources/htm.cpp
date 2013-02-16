@@ -124,119 +124,6 @@ void ICoDF_HTM::HTM::itemsToStore(const double& ra, const double& dec)
 	this->_decQueue.push(dec);
 }
 
-HTMConstraint_t* ICoDF_HTM::HTM::SetConstraint(PointInfo_t* pt, double& radius)
-{
-	HTMConstraint_t* constraint = NULL;
-	if (pt != NULL)
-    {
-		
-		if (IsCorrectRA(pt->_ra) && IsCorrectDEC(pt->_dec))
-		{
-			double rProjection = sin(90 - abs(pt->_dec));
-			double x = rProjection * cos(pt->_ra);
-			double y = rProjection * sin(pt->_ra);
-			double z = cos(90 - abs(pt->_dec));
-			Eigen::Vector3d p(x, y, z);
-			constraint = new HTMConstraint_t;
-			std::queue<trixel_t*> workingList;
-			
-			for(unsigned int i = 0; i < 4; ++i)
-			{
-				unsigned short int inside = 0;
-				if (this->_octahedron->_rootTrixels[i] != NULL)
-				{
-					if (p.dot(this->_octahedron->_rootTrixels[i]->_vertices[0]) > radius)
-						++inside;
-					if (p.dot(this->_octahedron->_rootTrixels[i]->_vertices[1]) > radius)
-						++inside;
-					if (p.dot(this->_octahedron->_rootTrixels[i]->_vertices[2]) > radius)
-						inside++;
-				}
-				if (inside == 3)
-					constraint->_inside.push_back(this->_octahedron->_rootTrixels[i]);
-				else if (inside > 0)
-					workingList.push(this->_octahedron->_rootTrixels[i]);
-				else
-				{
-					Eigen::Vector3d tmpVec1 = _octahedron->_rootTrixels[i]->_vertices[1] - _octahedron->_rootTrixels[i]->_vertices[0];
-					Eigen::Vector3d tmpVec2 = _octahedron->_rootTrixels[i]->_vertices[2] - _octahedron->_rootTrixels[i]->_vertices[1];
-					Eigen::Vector3d tmpVec3 = tmpVec1.cross(tmpVec2);
-					Eigen::Vector3d trixelBoundary = tmpVec3 / tmpVec3.norm();
-					
-					double theta = acos(trixelBoundary.dot(p) / (trixelBoundary.norm() * p.norm()));
-					double phi1 = acos(trixelBoundary.dot(Eigen::Vector3d(1,0,0)) / (trixelBoundary.norm()));
-					double phi2 = acos(p.dot(Eigen::Vector3d(1,0,0)) / p.norm());
-					if (theta < phi1 + phi2)
-					{
-						if (!(_octahedron->_rootTrixels[i]->_vertices[0].cross(_octahedron->_rootTrixels[i]->_vertices[1]).dot(p) < 0 &&
-							  _octahedron->_rootTrixels[i]->_vertices[1].cross(_octahedron->_rootTrixels[i]->_vertices[2]).dot(p) < 0 &&
-							  _octahedron->_rootTrixels[i]->_vertices[2].cross(_octahedron->_rootTrixels[i]->_vertices[0]).dot(p)))
-						{
-							constraint->_partial.push_back(_octahedron->_rootTrixels[i]);
-						}
-					}
-				}
-			}
-			while (workingList.size() > 0)
-			{
-				trixel_t* tmp = workingList.front();
-				workingList.pop();
-				unsigned short int inside = 0;
-				if (p.dot(tmp->_vertices[0]) > radius)
-					++inside;
-				if (p.dot(tmp->_vertices[2]) > radius)
-					++inside;
-				if (p.dot(tmp->_vertices[1]) > radius)
-					++inside;
-				
-				if (inside == 3)
-					constraint->_inside.push_back(tmp);
-				else if (inside > 0)
-				{
-					if (tmp->_children != NULL)
-					{
-						for (unsigned int i = 0; i < 4; ++i)
-							if (tmp->_children[i] != NULL)
-								workingList.push(tmp->_children[i]);
-					}
-					else
-						constraint->_partial.push_back(tmp);
-				}
-				else
-				{
-					Eigen::Vector3d tmpVec1 = tmp->_vertices[1] - tmp->_vertices[0];
-					Eigen::Vector3d tmpVec2 = tmp->_vertices[2] - tmp->_vertices[1];
-					Eigen::Vector3d tmpVec3 = tmpVec1.cross(tmpVec2);
-					Eigen::Vector3d trixelBoundary = tmpVec3 / tmpVec3.norm();
-					
-					double theta = acos(trixelBoundary.dot(p) / (trixelBoundary.norm() * p.norm()));
-					double phi1 = acos(trixelBoundary.dot(Eigen::Vector3d(1,0,0)) / (trixelBoundary.norm()));
-					double phi2 = acos(p.dot(Eigen::Vector3d(1,0,0)) / p.norm());
-					if (theta < phi1 + phi2)
-					{
-						if (!(tmp->_vertices[0].cross(tmp->_vertices[1]).dot(p) < 0 &&
-							  tmp->_vertices[1].cross(tmp->_vertices[2]).dot(p) < 0 &&
-							  tmp->_vertices[2].cross(tmp->_vertices[0]).dot(p)))
-						{
-							constraint->_partial.push_back(tmp);
-						}
-					}
-				}
-			}
-		}
-		else
-		{
-			LS_ADDMSG(LogService::WARNING, "ICoDF_HTM::HTM::SetConstraint", "Given right ascension and/or declination has incorrect value");
-			return NULL;
-		}
-    }
-	else
-    {
-		LS_ADDMSG(LogService::NOTICE, "HTM::SetConstraint", "Given <pt> has a NULL value");
-    }
-	
-	return constraint;
-}
 
 inline std::pair<double, double>       ICoDF_HTM::HTM::CalcCoordPoint(std::pair<double, double>& a, std::pair<double, double>& b)
 {
@@ -308,9 +195,9 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 	double supLimit = radius + delta;
 	HTMConstraint_t constraint;
 	
-	for (it = this->_points.begin(); it != this->_points.end(); ++it)
+    for (std::pair<std::string, PointInfo_t*> const & point : this->_points)
     {
-		PointInfo_t* pt = (*it).second;
+		PointInfo_t* pt = point.second;
 		if (IsCorrectRA(pt->_ra) && IsCorrectDEC(pt->_dec))
 		{
 			double rProjection = sin(90 - abs(pt->_dec));
@@ -591,8 +478,6 @@ void	ICoDF_HTM::HTM::FreeAllTrixels(trixel_t* current)
 			delete[] current->_children;
                 
 		}
-        if (current->_vertices != NULL)
-            delete[] current->_vertices;
     }
 }
 

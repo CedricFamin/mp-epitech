@@ -10,19 +10,18 @@ set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 
 # TBB requirements -----------------------------------------------------------------------
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
-find_package(TBB REQUIRED)
-include_directories(${TBB_INCLUDE_DIRS})
-link_directories(${TBB_LIBRARY_DIRS})
+#find_package(TBB REQUIRED)
+#include_directories(${TBB_INCLUDE_DIRS})
+#link_directories(${TBB_LIBRARY_DIRS})
 
-# BOOST REQUIREMENTS ---------------------------------------------------------------------
-#find_package(Boost REQUIRED)
-#if (Boost_FOUND)
-#  message("-- Found Boost")
-#else ()
-#  message(FATAL_ERROR "-- Unable to Find Boost")
-#endif()
-#include_directories(${Boost_INCLUDE_DIR})
-#link_directories(${Boost_LIBRARY_DIRS})
+
+# OPENCL requirement
+FIND_PACKAGE (OPENCL REQUIRED)
+
+# Tcmalloc requirements -----------------------------------------------------------------------
+find_package(TCMALLOC REQUIRED)
+include_directories(${Tcmalloc_DIRS})
+link_directories(${Tcmalloc_LIBRARIES})
 
 # EIGEN REQUIREMENTS ---------------------------------------------------------------------
 find_package(Eigen3 REQUIRED)
@@ -55,4 +54,8 @@ add_executable(
 	${core_source_files}
 )
 
-target_link_libraries(LandySzalayEstimator ${TBB_LIBRARIES})
+TARGET_LINK_LIBRARIES (
+   LandySzalayEstimator
+   ${Tcmalloc_LIBRARIES}
+   ${OPENCL_LIBRARIES}
+)

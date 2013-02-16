@@ -27,7 +27,7 @@ namespace ICoDF_HTM
 	class HTMAsciiParser //: public IHTMParser
 	{
 	public:
-		void Parse(std::string& filename);
+		bool Parse(std::string& filename);
 		unsigned int getNbObj(void) const;
         std::vector<std::pair<double, double>> const & getObjects(void) const;
 		

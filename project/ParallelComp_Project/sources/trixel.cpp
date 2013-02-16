@@ -150,11 +150,6 @@ void ICoDF_HTM::ClearTrixelChildren(trixel_t *parent)
 // CLEARTRIXELCHILDREN
 void ICoDF_HTM::ClearTrixel(trixel_t *trixel)
 {
-	if (trixel->_vertices != NULL)
-    {
-		delete [] trixel->_vertices;
-		trixel->_vertices = NULL;
-    }
 	ClearTrixelChildren(trixel);
 }
 
@@ -250,8 +245,6 @@ void ICoDF_HTM::InitTrixel(trixel_t* trixel)
 	else
     {
 		trixel->_children = NULL;
-		trixel->_vertices = NULL;
-		trixel->_vertices = new Eigen::Vector3d[3];
 		trixel->_reverse = false;
 		trixel->_HTMId = "";
 		trixel->_nbChildObject = 0;

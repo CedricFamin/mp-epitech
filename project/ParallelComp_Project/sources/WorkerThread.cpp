@@ -34,7 +34,6 @@ void WorkerThread::Launch()
     tmp.str("");
     tmp << "Two POint Correlation have been computed for the Hybrid Catalog [" << _nr << "]";
     _logQueue->AddLogMessage(LogService::NOTICE, "Worker", tmp.str());
-    
     if (_shouldLogHTM)
     {
         _htm->LogIntoFile("log");

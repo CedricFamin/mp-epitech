@@ -26,10 +26,10 @@ namespace ICoDF_HTM
     typedef struct trixel_s
     {
         struct trixel_s**			_children;	//< trixel's subtrixels
-        Eigen::Vector3d*			_vertices;	//< Trixel's vertices
-        bool				_reverse;	//< is an upside-down trixel ?
-        std::string				_HTMId;		//< N10120112121101
-        unsigned int			_nbChildObject; //< Number of objects contained in this trixel.
+        Eigen::Vector3d			    _vertices[3];	//< Trixel's vertices
+        bool				        _reverse;	//< is an upside-down trixel ?
+        std::string				    _HTMId;		//< N10120112121101
+        unsigned int			    _nbChildObject; //< Number of objects contained in this trixel.
         struct PointInfo_s*			_info;		//< Point information structure for the actual
         /*
         void* operator new(size_t);

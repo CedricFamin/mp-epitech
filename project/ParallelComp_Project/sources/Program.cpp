@@ -51,13 +51,13 @@ void Program::Init(ProgramConfig const & config)
     _htm->CreateHTM();
     
     this->Log(LogService::NOTICE, "HTM Created for Normal Catalog");
-    std::stringstream tmp;
     
     _raMin = _htm->getMinRa();
     _raMax = _htm->getMaxRa();
     _decMin = _htm->getMinDec();
     _decMax = _htm->getMaxDec();
-    tmp.str("");
+    
+    std::stringstream tmp;
     tmp << "Computing Mean values for Random and Hybrid Catalog on " << this->_config.loop << " loops using " << _parser->getNbObj() << " random objects...";
     this->Log(LogService::NOTICE, tmp.str());
 }
@@ -77,9 +77,8 @@ void Program::Launch()
 {
     this->Log(LogService::NOTICE, "Launch");
     
-    std::stringstream tmp;
     unsigned int nn = _htm->TwoPointsCorrelation(this->_config.radius, this->_config.delta);
-    tmp.str("");
+    std::stringstream tmp;
     tmp << "Two Point Correlation have been computed for the Normal Catalog [" << nn << "] pairs";
     this->Log(LogService::NOTICE, tmp.str());
     _htm->DeleteOctahedron();
@@ -130,7 +129,6 @@ void Program::Launch()
     
     for (WorkerThread* worker : workerList)
     {
-        this->Log(LogService::NOTICE, "Done.");
         worker->Clean();
         
         unsigned int currentRR = worker->GetRR();
@@ -169,6 +167,4 @@ void Program::Launch()
 void Program::Log(unsigned int level, std::string const & message)
 {
     _logQueue->AddLogMessage(level, "Program", message);
-    //LS_ADDMSG(level, "Program", message);
-    //_logService.AddMessage(level, "Program", message);
 }

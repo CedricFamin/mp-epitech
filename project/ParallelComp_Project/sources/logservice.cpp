@@ -164,13 +164,6 @@ ICoDF::LogService::LogService()
 // DEFAULT DTOR
 ICoDF::LogService::~LogService()
 {
-	this->AddMessage(LogService::NOTICE, "LogService", "shutting down log service...");
-	if (this->_logFile.good())
-    {
-		this->_logFile.flush();
-		this->_logFile.close();
-    }
-    
     _continue = false;
     _thread.join();
     for (LogQueue * queue : _logQueues)
@@ -178,6 +171,12 @@ ICoDF::LogService::~LogService()
         delete queue;
     }
     
+	this->AddMessage(LogService::NOTICE, "LogService", "shutting down log service...");
+	if (this->_logFile.good())
+    {
+		this->_logFile.flush();
+		this->_logFile.close();
+    }
 }
 
 ICoDF::LogQueue * ICoDF::LogService::CreateNewLogQueue()
@@ -194,6 +193,7 @@ void ICoDF::LogService::StartLogService()
     {
         std::chrono::milliseconds duration(200);
         bool forceContinueLog = false;
+        
         _continue = true;
         while (_continue || forceContinueLog)
         {

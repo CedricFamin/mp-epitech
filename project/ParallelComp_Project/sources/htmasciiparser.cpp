@@ -1,6 +1,6 @@
 #include "../includes/htmasciiparser.hpp"
 
-void ICoDF_HTM::HTMAsciiParser::Parse(std::string& filename)
+bool ICoDF_HTM::HTMAsciiParser::Parse(std::string& filename)
 {
 	std::ifstream	file(filename);
 	std::string	line(""), str1(""), str2("");
@@ -24,9 +24,9 @@ void ICoDF_HTM::HTMAsciiParser::Parse(std::string& filename)
 			}
 		}
 		file.close();
+        return true;
     }
-	else
-		LS_ADDMSG(LogService::FATAL, "HTMAsciiParser", "Can't Open File : " + filename);
+    return false;
 }
 
 unsigned int ICoDF_HTM::HTMAsciiParser::getNbObj(void) const
