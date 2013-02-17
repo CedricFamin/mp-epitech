@@ -122,81 +122,33 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 	double infLimit = radius - delta;
 	if (infLimit < 0) infLimit = 0;
 	double supLimit = radius + delta;
-	
+    
     for (std::pair<std::string, PointInfo_t*> const & point : this->_points)
     {
 		PointInfo_t* pt = point.second;
+        
 		if (IsCorrectRA(pt->_ra) && IsCorrectDEC(pt->_dec))
 		{
 			Eigen::Vector3d p = pt->_position;
 			
 			std::queue<trixel_t*> workingList;
-			
 			for (unsigned int i = 0; i < 4; ++i)
-			{
-				unsigned short int infInside = 0;
-				unsigned short int supInside = 0;
-				if (this->_octahedron->_rootTrixels[i] != NULL)
-				{
-					if (p.dot(this->_octahedron->_rootTrixels[i]->_vertices[0]) > infLimit)
-						++infInside;
-					if (p.dot(this->_octahedron->_rootTrixels[i]->_vertices[1]) > infLimit)
-						++infInside;
-					if (p.dot(this->_octahedron->_rootTrixels[i]->_vertices[2]) > infLimit)
-						infInside++;
-					
-					if (p.dot(this->_octahedron->_rootTrixels[i]->_vertices[0]) > supLimit)
-						++supInside;
-					if (p.dot(this->_octahedron->_rootTrixels[i]->_vertices[1]) > supLimit)
-						++supInside;
-					if (p.dot(this->_octahedron->_rootTrixels[i]->_vertices[2]) > supLimit)
-						supInside++;
-				}
-				if (supInside == 3 && infInside == 0)
-                    nbPairs += this->_octahedron->_rootTrixels[i]->_nbChildObject;
-				if ((supInside == 3 && infInside > 0) || supInside > 0)
-					workingList.push(this->_octahedron->_rootTrixels[i]);
-				else
-				{
-					Eigen::Vector3d tmpVec1 = _octahedron->_rootTrixels[i]->_vertices[1] - _octahedron->_rootTrixels[i]->_vertices[0];
-					Eigen::Vector3d tmpVec2 = _octahedron->_rootTrixels[i]->_vertices[2] - _octahedron->_rootTrixels[i]->_vertices[1];
-					Eigen::Vector3d tmpVec3 = tmpVec1.cross(tmpVec2);
-					Eigen::Vector3d trixelBoundary = tmpVec3 / tmpVec3.norm();
-					
-					double theta = acos(trixelBoundary.dot(p) / (trixelBoundary.norm() * p.norm()));
-					double phi1 = acos(trixelBoundary.dot(Eigen::Vector3d(1,0,0)) / (trixelBoundary.norm()));
-					double phi2 = acos(p.dot(Eigen::Vector3d(1,0,0)) / p.norm());
-					if (theta < phi1 + phi2)
-					{
-						if (!(_octahedron->_rootTrixels[i]->_vertices[0].cross(_octahedron->_rootTrixels[i]->_vertices[1]).dot(p) < 0 &&
-							  _octahedron->_rootTrixels[i]->_vertices[1].cross(_octahedron->_rootTrixels[i]->_vertices[2]).dot(p) < 0 &&
-							  _octahedron->_rootTrixels[i]->_vertices[2].cross(_octahedron->_rootTrixels[i]->_vertices[0]).dot(p)))
-						{
-                            nbPairs += 1;
-						}
-					}
-				}
-			}
+                workingList.push(this->_octahedron->_rootTrixels[i]);
+            
 			while (workingList.size() > 0)
 			{
 				trixel_t* tmp = workingList.front();
 				workingList.pop();
-				unsigned short int infInside = 0;
-				unsigned short int supInside = 0;
-				if (p.dot(tmp->_vertices[0]) > infLimit)
-					++infInside;
-				if (p.dot(tmp->_vertices[2]) > infLimit)
-					++infInside;
-				if (p.dot(tmp->_vertices[1]) > infLimit)
-					++infInside;
-				
-				if (p.dot(tmp->_vertices[0]) > supLimit)
-					++supInside;
-				if (p.dot(tmp->_vertices[2]) > supLimit)
-					++supInside;
-				if (p.dot(tmp->_vertices[1]) > supLimit)
-					++supInside;
-				
+                
+                double dist[3] = {
+                    p.dot(tmp->_vertices[0]),
+                    p.dot(tmp->_vertices[1]),
+                    p.dot(tmp->_vertices[2])
+                };
+                
+                unsigned int infInside = (dist[0] > infLimit) + (dist[1] > infLimit) + (dist[2] > infLimit);
+                unsigned int supInside = (dist[0] > supLimit) + (dist[1] > supLimit) + (dist[2] > supLimit);
+                
 				if (supInside == 3 && infInside == 0)
                     nbPairs += tmp->_nbChildObject;
 				else if ((supInside == 3 && infInside > 0)
@@ -293,38 +245,19 @@ void	ICoDF_HTM::HTM::Display(trixel_t* current, std::ofstream& fstream)
 				if (current->_children[i] != NULL)
 				{
 					Display(current->_children[i], fstream);
-					if (current->_children[0])
-					{
-						if (this->_points[current->_children[0]->_HTMId])
-						{
-							PointInfo_t* info = this->_points[current->_children[0]->_HTMId];
-							fstream << "Item stored at trixel : " << current->_children[0]->_HTMId << " with right ascension and declinaison at " << info->_ra << " " << info->_dec << std::endl;
-						}
-					}
-					else if (current->_children[1])
-					{
-						if (this->_points[current->_children[1]->_HTMId])
-						{
-							PointInfo_t* info = this->_points[current->_children[1]->_HTMId];
-							fstream << "Item stored at trixel : " << current->_children[1]->_HTMId << " with right ascension and declinaison at " << info->_ra << " " << info->_dec << std::endl;
-						}
-					}
-					else if (current->_children[2])
-					{
-						if (this->_points[current->_children[2]->_HTMId])
-						{
-							PointInfo_t* info = this->_points[current->_children[2]->_HTMId];
-							fstream << "Item stored at trixel : " << current->_children[2]->_HTMId << " with right ascension and declinaison at " << info->_ra << " " << info->_dec << std::endl;
-						}
-					}
-					else if (current->_children[3])
-					{
-						if (this->_points[current->_children[3]->_HTMId])
-						{
-							PointInfo_t* info = this->_points[current->_children[3]->_HTMId];
-							fstream << "Item stored at trixel : " << current->_children[3]->_HTMId << " with right ascension and declinaison at " << info->_ra << " " << info->_dec << std::endl;
-						}
-					}
+                    for (int j = 0; j < 4; ++j)
+                    {
+                        if (current->_children[j])
+                        {
+                            if (this->_points[current->_children[j]->_HTMId])
+                            {
+                                PointInfo_t* info = this->_points[current->_children[j]->_HTMId];
+                                fstream << "Item stored at trixel : " << current->_children[j]->_HTMId << " with right ascension and declinaison at " << info->_ra << " " << info->_dec << std::endl;
+                            }
+                            break;
+                        }
+					    
+                    }
 				}
 			}
 		}

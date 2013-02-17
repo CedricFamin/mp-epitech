@@ -115,9 +115,7 @@ namespace CL
         if(_kernel) clReleaseKernel(_kernel);
         if(_program) clReleaseProgram(_program);
         if(_command_queue) clReleaseCommandQueue(_command_queue);
-        
         if(_context) clReleaseContext(_context);
-        
         if(_devices) delete(_devices);
     }
     
@@ -134,21 +132,39 @@ namespace CL
         
         _program = clCreateProgramWithSource(_context, 1, (const char **) &cSourceCL, &program_length, &_err);
         
-        //buildExecutable();
+        BuildExecutable();
         
         free(cSourceCL);
     }
     
+    void CLKernelLauncher::BuildExecutable()
+    {
+        _err = clBuildProgram(_program, 0, NULL, NULL, NULL, NULL);
+        cl_build_status build_status;
+		_err = clGetProgramBuildInfo(_program, _devices[_deviceUsed], CL_PROGRAM_BUILD_STATUS, sizeof(cl_build_status), &build_status, NULL);
+        
+		char *build_log;
+		size_t ret_val_size;
+		_err = clGetProgramBuildInfo(_program, _devices[_deviceUsed], CL_PROGRAM_BUILD_LOG, 0, NULL, &ret_val_size);
+        
+		build_log = new char[ret_val_size+1];
+		_err = clGetProgramBuildInfo(_program, _devices[_deviceUsed], CL_PROGRAM_BUILD_LOG, ret_val_size, build_log, NULL);
+		build_log[ret_val_size] = '\0';
+    }
+    
+    void CLKernelLauncher::InitKernel(std::string const & kernelName, unsigned int nbExec)
+    {
+        _kernel = clCreateKernel(_program, kernelName.c_str(), &_err);
+        _num = nbExec;
+        _workGroupSize[0] = _num;
+    }
+    
     void CLKernelLauncher::RunProgram()
     {
+        clFinish(_command_queue);
         _err = clEnqueueNDRangeKernel(_command_queue, _kernel, 1, NULL, _workGroupSize, NULL, 0, NULL, &_event);
         clReleaseEvent(_event);
         clFinish(_command_queue);
-        
-        // Read arg here
-        
-        // ---====---
-        clReleaseEvent(_event);
     }
     
 }
