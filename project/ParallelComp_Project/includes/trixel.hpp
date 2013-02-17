@@ -14,6 +14,7 @@
 // ICoDF
 #include "logservice.hpp"
 #include "pointinfo.hpp"
+#include "Vector.hpp"
 
 using namespace ICoDF;
 using namespace ICoDF_HTM;
@@ -28,14 +29,14 @@ namespace ICoDF_HTM
         trixel_s()
         : _midPointsComputed(false)
         {
-            _midPoints[0] = Eigen::Vector3d(0, 0, 0);
-            _midPoints[1] = Eigen::Vector3d(0, 0, 0);
-            _midPoints[2] = Eigen::Vector3d(0, 0, 0);
+            _midPoints[0] = Vector3d{0, 0, 0};
+            _midPoints[1] = Vector3d{0, 0, 0};
+            _midPoints[2] = Vector3d{0, 0, 0};
         }
         
         struct trixel_s**			_children;	//< trixel's subtrixels
-        Eigen::Vector3d			    _vertices[3];	//< Trixel's vertices
-        Eigen::Vector3d             _midPoints[3];
+        Vector3d			        _vertices[3];	//< Trixel's vertices
+        Vector3d                    _midPoints[3];
         
         bool                        _midPointsComputed;
         
@@ -52,7 +53,7 @@ namespace ICoDF_HTM
     void ClearTrixelChildren(trixel_t *parent);
     
     /// Compute a trixel's midpoint vectors
-    void ComputeTrixelMidpoints(trixel_t* trixel, Eigen::Vector3d* outMidPoint);
+    void ComputeTrixelMidpoints(trixel_t* trixel, Vector3d* outMidPoint);
     
     /// Create A Root Trixel
     trixel_t* CreateRootTrixel(std::string HTMId);
@@ -64,7 +65,7 @@ namespace ICoDF_HTM
     trixel_t** CreateTrixelChildren(trixel_t* parent);
     
     /// Return which subtrixel the point is (vector version)
-    unsigned short int GetIndex(trixel_t* trixel, Eigen::Vector3d& pointVector);
+    unsigned short int GetIndex(trixel_t* trixel, Vector3d& pointVector);
     
     /// Return which subtrixel the point is (object version)
     unsigned short int GetIndex(trixel_t* trixel, PointInfo_t* object);

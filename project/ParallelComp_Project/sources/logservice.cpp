@@ -193,10 +193,10 @@ void ICoDF::LogService::StartLogService()
     {
         std::chrono::milliseconds duration(200);
         bool forceContinueLog = false;
-        
         _continue = true;
         while (_continue || forceContinueLog)
         {
+            std::this_thread::sleep_for(duration);
             forceContinueLog = false;
             for (LogQueue * queue : _logQueues)
             {
@@ -214,7 +214,7 @@ void ICoDF::LogService::StartLogService()
                 }
                 queue->Clear();
             }
-            std::this_thread::sleep_for(duration);
+            
         }
     });
 }

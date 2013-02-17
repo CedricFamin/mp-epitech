@@ -38,12 +38,12 @@ trixel_t** ICoDF_HTM::CreateTrixelChildren(trixel_t *parent)
 }
 
 // -------------------------------------------------------------------------------
-void ICoDF_HTM::ComputeTrixelMidpoints(trixel_t* trixel, Eigen::Vector3d* outMidPoint)
+void ICoDF_HTM::ComputeTrixelMidpoints(trixel_t* trixel, Vector3d* outMidPoint)
 {
  
     if (!trixel->_midPointsComputed)
     {
-        Eigen::Vector3d tmp;
+        Vector3d tmp;
         
         tmp = trixel->_vertices[1] + trixel->_vertices[2];
         trixel->_midPoints[0] = tmp / tmp.norm();
@@ -96,7 +96,7 @@ trixel_t* ICoDF_HTM::CreateTrixelChild(trixel_t* parent, unsigned short int& ind
 		tmp.str("");
 		tmp << parent->_HTMId << index;
 		parent->_children[index]->_HTMId = tmp.str();
-        Eigen::Vector3d midPoints[3];
+        Vector3d midPoints[3];
 		ComputeTrixelMidpoints(parent, midPoints);
 		
 		switch (index)
@@ -164,14 +164,14 @@ void ICoDF_HTM::ClearTrixel(trixel_t *trixel)
 
 // --------------------------------------------------------------------
 // GETINDEX (vector version)
-unsigned short int ICoDF_HTM::GetIndex(trixel_t* trixel, Eigen::Vector3d& p)
+unsigned short int ICoDF_HTM::GetIndex(trixel_t* trixel, Vector3d& p)
 {
 	if (trixel != NULL && NULL != trixel->_vertices)
     {
 		unsigned short int index = (unsigned short int)~0;
 		
-		Eigen::Vector3d* v = trixel->_vertices;
-		Eigen::Vector3d w[3];
+		Vector3d* v = trixel->_vertices;
+		Vector3d w[3];
         ComputeTrixelMidpoints(trixel, w);
         
         // HERE

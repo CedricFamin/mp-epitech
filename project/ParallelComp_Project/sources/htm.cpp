@@ -6,16 +6,16 @@ void ICoDF_HTM::HTM::AddPoint(const double& ra, const double& dec)
 	PointInfo_t* info = new PointInfo_t;
 	info->_ra = ra;
 	info->_dec = dec;
-    info->_position = Eigen::Vector3d(0, 0, 0);
+    info->_position = Vector3d{0, 0, 0};
     if (IsCorrectRA(ra) && IsCorrectDEC(dec))
     {
-        if (info->_position == Eigen::Vector3d(0, 0, 0))
+        if (info->_position == Vector3d{0, 0, 0})
         {
             double rProjection = sin(90 - abs(dec));
             double x = rProjection * cos(ra);
             double y = rProjection * sin(ra);
             double z = cos(90 - abs(dec));
-            info->_position = Eigen::Vector3d(x, y, z);
+            info->_position = Vector3d{x, y, z};
         }
     }
 	if (this->SelectRootTrixel(info))
@@ -43,21 +43,24 @@ bool ICoDF_HTM::HTM::CreateHTM()
 // AssignPoint
 void ICoDF_HTM::HTM::AssignPoint(PointInfo_t* pt)
 {
-	if (pt->_current->_nbChildObject > 1)
+    unsigned int & nbChildObject = pt->_current->_nbChildObject;
+    trixel_t**& children = pt->_current->_children;
+    
+	if (nbChildObject > 1)
     {
 		unsigned short int index = GetIndex(pt->_current, pt);
 		if (index == (unsigned int short)~0)
 			return;
 		
-		if (pt->_current->_children[index] == NULL)
-			pt->_current->_children[index] = CreateTrixelChild(pt->_current, index);
-        pt->_current = pt->_current->_children[index];
+		if (children[index] == NULL)
+			children[index] = CreateTrixelChild(pt->_current, index);
+        pt->_current = children[index];
         this->_pointList.push(pt);
 		
     }
-	else if (pt->_current->_nbChildObject == 1)
+	else if (nbChildObject == 1)
     {
-		++pt->_current->_nbChildObject;
+		++nbChildObject;
 		unsigned short int indexCurrent = GetIndex(pt->_current, pt);
 		PointInfo_t* old = pt->_current->_info;
 		pt->_current->_info = NULL;
@@ -66,44 +69,32 @@ void ICoDF_HTM::HTM::AssignPoint(PointInfo_t* pt)
             indexOld == (unsigned short int)~0)
 			return;
 		
-		if (pt->_current->_children == NULL)
+		if (children == NULL)
 		{
 			CreateTrixelChildren(pt->_current);
 			CreateTrixelChild(pt->_current, indexOld);
 			if (indexOld != indexCurrent)
 				CreateTrixelChild(pt->_current, indexCurrent);
-			//auto it = this->_points.find(pt->_current->_HTMId);
-			//this->_points.erase(it);
 		}
-		old->_current = pt->_current->_children[indexOld];
+		old->_current = children[indexOld];
 		this->_pointList.push(pt);
 		this->_pointList.push(old);
-		pt->_current = pt->_current->_children[indexCurrent];
+		pt->_current = children[indexCurrent];
     }
-	else if (pt->_current->_nbChildObject == 0)
+	else if (nbChildObject == 0)
     {
 		pt->_current->_info = pt;
-		//this->_points[pt->_current->_HTMId] = pt;
-		pt->_current->_nbChildObject = 1;
+		nbChildObject = 1;
     }
-}
-
-inline std::pair<double, double>       ICoDF_HTM::HTM::CalcCoordPoint(std::pair<double, double>& a, std::pair<double, double>& b)
-{
-	std::pair<double, double>	result;
-	
-	result.first = a.first - b.first;
-	result.second = a.second - b.second;
-	return result;
 }
 
 bool ICoDF_HTM::HTM::SelectRootTrixel(PointInfo_t* pt)
 {
-    Eigen::Vector3d p = pt->_position;
+    Vector3d p = pt->_position;
     
 	for (int i = 0; i < 8; ++i)
     {
-		Eigen::Vector3d* v = this->_octahedron->_rootTrixels[i]->_vertices;
+		Vector3d* v = this->_octahedron->_rootTrixels[i]->_vertices;
 		
 		if (v[0].cross(v[1]).dot(p) > 0 &&
 			v[1].cross(v[2]).dot(p) > 0 &&
@@ -119,18 +110,19 @@ bool ICoDF_HTM::HTM::SelectRootTrixel(PointInfo_t* pt)
 /// TwoPointsCorrelation
 unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 {
-	unsigned int nbPairs = 0;
-	std::map<std::string, PointInfo_t*>::iterator it;
-	
+    unsigned int * nbPair = new unsigned int [this->_pointsToCompute.size()];
+ 	
 	double infLimit = radius - delta;
 	if (infLimit < 0) infLimit = 0;
 	double supLimit = radius + delta;
     
-    for (PointInfo_t const * pt : this->_pointsToCompute)
+    for (unsigned int i = 0; i < this->_pointsToCompute.size(); ++i)
     {
+        PointInfo_t const * pt = this->_pointsToCompute[i];
+        nbPair[i] = 0;
 		if (IsCorrectRA(pt->_ra) && IsCorrectDEC(pt->_dec))
 		{
-			Eigen::Vector3d p = pt->_position;
+			Vector3d p = pt->_position;
 			
 			std::queue<trixel_t*> workingList;
 			for (unsigned int i = 0; i < 4; ++i)
@@ -151,7 +143,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
                 unsigned int supInside = (dist[0] > supLimit) + (dist[1] > supLimit) + (dist[2] > supLimit);
                 
 				if (supInside == 3 && infInside == 0)
-                    nbPairs += tmp->_nbChildObject;
+                    nbPair[i]  += tmp->_nbChildObject;
 				else if ((supInside == 3 && infInside > 0)
 						 || supInside > 0)
 				{
@@ -162,44 +154,44 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 								workingList.push(tmp->_children[i]);
 					}
 					else
-                        nbPairs += 1;
+                        nbPair[i]  += 1;
 				}
 				else
 				{
-					Eigen::Vector3d tmpVec1 = tmp->_vertices[1] - tmp->_vertices[0];
-					Eigen::Vector3d tmpVec2 = tmp->_vertices[2] - tmp->_vertices[1];
-					Eigen::Vector3d tmpVec3 = tmpVec1.cross(tmpVec2);
-					Eigen::Vector3d trixelBoundary = tmpVec3 / tmpVec3.norm();
+					Vector3d tmpVec1 = tmp->_vertices[1] - tmp->_vertices[0];
+					Vector3d tmpVec2 = tmp->_vertices[2] - tmp->_vertices[1];
+					Vector3d tmpVec3 = tmpVec1.cross(tmpVec2);
+					Vector3d trixelBoundary = tmpVec3 / tmpVec3.norm();
 					
 					double theta = acos(trixelBoundary.dot(p) / (trixelBoundary.norm() * p.norm()));
-					double phi1 = acos(trixelBoundary.dot(Eigen::Vector3d(1,0,0)) / (trixelBoundary.norm()));
-					double phi2 = acos(p.dot(Eigen::Vector3d(1,0,0)) / p.norm());
+					double phi1 = acos(trixelBoundary.dot(Vector3d{1,0,0}) / (trixelBoundary.norm()));
+					double phi2 = acos(p.dot(Vector3d{1,0,0}) / p.norm());
 					if (theta < phi1 + phi2)
 					{
 						if (!(tmp->_vertices[0].cross(tmp->_vertices[1]).dot(p) < 0 &&
 							  tmp->_vertices[1].cross(tmp->_vertices[2]).dot(p) < 0 &&
 							  tmp->_vertices[2].cross(tmp->_vertices[0]).dot(p)))
 						{
-                            nbPairs += 1;
+                            nbPair[i] += 1;
 						}
 					}
 				}
 			}
 		}
     }
-	return nbPairs;
+    return std::accumulate(nbPair, nbPair + this->_pointsToCompute.size(), 0);
 }
 
 void	ICoDF_HTM::HTM::CreateOctahedron(void)
 {
 	this->_octahedron = new Octahedron_t;
 	this->_octahedron->_rootTrixels = new trixel_t*[8];
-	Eigen::Vector3d v0( 0,  0,  1);
-	Eigen::Vector3d v1( 1,  0,  0);
-	Eigen::Vector3d v2( 0,  1,  1);
-	Eigen::Vector3d v3(-1,  0,  0);
-	Eigen::Vector3d v4( 0, -1,  0);
-	Eigen::Vector3d v5( 0,  0, -1);
+	Vector3d v0{ 0,  0,  1};
+	Vector3d v1{ 1,  0,  0};
+	Vector3d v2{ 0,  1,  1};
+    Vector3d v3{-1,  0,  0};
+    Vector3d v4{ 0, -1,  0};
+    Vector3d v5{ 0,  0, -1};
 	
 	this->_octahedron->_rootTrixels[0] = CreateRootTrixel(std::string("S0"));
 	this->_octahedron->_rootTrixels[0]->_vertices[0] = v1;

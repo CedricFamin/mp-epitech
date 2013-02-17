@@ -81,9 +81,6 @@ namespace ICoDF_HTM
         ///
 		bool SelectRootTrixel(PointInfo_t* pt);
 		
-        ///
-		inline std::pair<double, double> CalcCoordPoint(std::pair<double, double>& a, std::pair<double, double>& b);
-		
         /// Check if a point is in a triangle describe by the given boundaries
 		bool PointInTriangle(const double& ra, const double& dec, double* boundaries);
 		

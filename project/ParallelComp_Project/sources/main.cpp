@@ -31,19 +31,18 @@ void testOpenCL()
     cl.RunProgram();
     cl.ReadArgs<float>(argsResult, 2);
     cl.CleanKernel();
-    
+
     for (int i = 0; i < 1024; ++i)
     {
         std::cout << "Result[" << i << "] = " << argsResult[i] << std::endl;
     }
-    
 }
 
 int main(int ac, char **av)
 {
     // SETTING UP LOG
     //GenericMemoryPool<trixel_t>::CreateInstance();
-    testOpenCL();
+    //testOpenCL();
     
     LogService::GetInstance()->SetConfiguration(LogService::LS_PRINT_ON_COUT);
     LogQueue* logQueue = LogService::GetInstance()->CreateNewLogQueue();
