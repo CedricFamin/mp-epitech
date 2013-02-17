@@ -39,9 +39,8 @@ namespace ICoDF_HTM
 	private:
 		Octahedron_t* _octahedron;				//< base HTM Octahedron
         
-		std::unordered_map<std::string, PointInfo_t*> _points;	//< map that reference objects by their HTMId
-		
 		std::queue<PointInfo_t*> _pointList;		//< List of points you are working with
+        std::vector<PointInfo_t*> _pointsToCompute; //< List of points for TwoPointsCorrelation
 		
 		std::ofstream stream;				//< Output stream to write HTM description
 		
