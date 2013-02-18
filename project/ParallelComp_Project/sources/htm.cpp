@@ -123,7 +123,10 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 		if (IsCorrectRA(pt->_ra) && IsCorrectDEC(pt->_dec))
 		{
 			Vector3d p = pt->_position;
-			
+			double pNorm = p.norm();
+            double pDot = p.dot(Vector3d{1,0,0});
+            double phi2 = acos(pDot / pNorm);
+            
 			std::queue<trixel_t*> workingList;
 			for (unsigned int i = 0; i < 4; ++i)
                 workingList.push(this->_octahedron->_rootTrixels[i]);
@@ -158,19 +161,25 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 				}
 				else
 				{
-					Vector3d tmpVec1 = tmp->_vertices[1] - tmp->_vertices[0];
-					Vector3d tmpVec2 = tmp->_vertices[2] - tmp->_vertices[1];
-					Vector3d tmpVec3 = tmpVec1.cross(tmpVec2);
-					Vector3d trixelBoundary = tmpVec3 / tmpVec3.norm();
-					
-					double theta = acos(trixelBoundary.dot(p) / (trixelBoundary.norm() * p.norm()));
-					double phi1 = acos(trixelBoundary.dot(Vector3d{1,0,0}) / (trixelBoundary.norm()));
-					double phi2 = acos(p.dot(Vector3d{1,0,0}) / p.norm());
-					if (theta < phi1 + phi2)
+                    if (tmp->_phi == 0)
+                    {
+                        Vector3d tmpVec1 = tmp->_vertices[1] - tmp->_vertices[0];
+                        Vector3d tmpVec2 = tmp->_vertices[2] - tmp->_vertices[1];
+                        Vector3d tmpVec3 = tmpVec1.cross(tmpVec2);
+                        
+                        tmp->_trixelBoundary = tmpVec3 / tmpVec3.norm();
+                        tmp->_phi = acos(tmp->_trixelBoundary.dot(Vector3d{1,0,0}) / (tmp->_trixelBoundary.norm()));
+                        tmp->_cross01 = tmp->_vertices[0].cross(tmp->_vertices[1]);
+                        tmp->_cross12 = tmp->_vertices[1].cross(tmp->_vertices[2]);
+                        tmp->_cross20 = tmp->_vertices[2].cross(tmp->_vertices[0]);
+                    }
+                    
+                    double theta = tmp->_trixelBoundary.dot(p) / tmp->_trixelBoundary.norm();
+					if (acos(theta * pNorm) < tmp->_phi + phi2)
 					{
-						if (!(tmp->_vertices[0].cross(tmp->_vertices[1]).dot(p) < 0 &&
-							  tmp->_vertices[1].cross(tmp->_vertices[2]).dot(p) < 0 &&
-							  tmp->_vertices[2].cross(tmp->_vertices[0]).dot(p)))
+						if (!(tmp->_cross01.dot(p) < 0 &&
+							  tmp->_cross12.dot(p) < 0 &&
+							  tmp->_cross20.dot(p)))
 						{
                             nbPair[i] += 1;
 						}
@@ -179,6 +188,7 @@ unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation(double& radius, double& delta)
 			}
 		}
     }
+    delete nbPair;
     return std::accumulate(nbPair, nbPair + this->_pointsToCompute.size(), 0);
 }
 

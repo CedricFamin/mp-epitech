@@ -25,7 +25,6 @@
 #include "octahedron.hpp"
 #include "htmasciiparser.hpp"
 #include "pointinfo.hpp"
-#include "htmconstraint.hpp"
 
 using namespace ICoDF;
 using namespace ICoDF_HTM;
@@ -37,67 +36,27 @@ namespace ICoDF_HTM
 	class HTM
 	{
 	private:
-		Octahedron_t* _octahedron;				//< base HTM Octahedron
+		Octahedron_t*             _octahedron;
+		std::queue<PointInfo_t*>  _pointList;
+        std::vector<PointInfo_t*> _pointsToCompute;
         
-		std::queue<PointInfo_t*> _pointList;		//< List of points you are working with
-        std::vector<PointInfo_t*> _pointsToCompute; //< List of points for TwoPointsCorrelation
-		
-		std::ofstream stream;				//< Output stream to write HTM description
-		
 	public:
-        /// DEFAULT CTOR
-		HTM(void);
-		
-        /// DEFAULT DTOR
-		~HTM(void);
-		
-        /// Add a new point to the working list
-		void AddPoint(const double& ra, const double& dec);
-		
-        /// Launch the creation of the HTM using the current working list
+        HTM(void);
+        ~HTM(void);
+        void CreateOctahedron(void);
+		void DeleteOctahedron(void);
 		bool CreateHTM(void);
 		
-        /// Assign a point (single operation) to the HTM
+		void AddPoint(const double& ra, const double& dec);
 		void AssignPoint(PointInfo_t *pt);
-		
-        /// Load points from a file
-		void LoadCatalog(std::string& file);
-		
-        /// Create the base octahedron
-		void CreateOctahedron(void);
-		
-        /// Delete the base Octahedron
-		void DeleteOctahedron(void);
-		
-        /// Get number of pairs a the radius -+ delta from the given object
 		unsigned int TwoPointsCorrelation(double &radius, double &delta);
 		
-        // Cedric: this method was removed from the parser
-		void UniformNumberGenerator(unsigned int const nbObject, double const raMin, double const raMax, double const decMin, double const decMax);
+        void UniformNumberGenerator(unsigned int const nbObject, double const raMin, double const raMax, double const decMin, double const decMax);
 		void GeneratePoint(std::vector<std::pair<double, double>> const & parPointsDefinition);
         void LogIntoFile(std::string const & parFilename);
 	private:
-		
-        ///
 		bool SelectRootTrixel(PointInfo_t* pt);
-		
-        /// Check if a point is in a triangle describe by the given boundaries
-		bool PointInTriangle(const double& ra, const double& dec, double* boundaries);
-		
-        /// send all trixels from the given one into the given output stream
 		void Display(trixel_t* current, std::ofstream& fstream);
-		
-        /// Free all trixels
 		void FreeAllTrixels(trixel_t* current);
-		
-        /// BOUNDARIES
-        /// Double[4] = decMin, decMax, raMin, raMax
-		double* ComputeRootTrixelBounds(trixel_t* trixel);
-		
-        /// Compute new bounds of a trixel's child from it's parent bounds and index
-		double* ComputeTrixelBounds(const double* fatherBounds, unsigned int& index, bool& reverse);
-		
-        /// get the index an point using the parent trixel bounds
-		unsigned int getIndex(double* boundaries, bool& reverse, const double& ra, const double& dec);
 	};
 }

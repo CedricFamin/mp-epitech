@@ -19,6 +19,7 @@ public:
     double GetRR() const { return _rr; }
     double GetNR() const { return _nr; }
     void SetShouldLogHTM(bool parValue) { _shouldLogHTM = parValue; }
+    
 protected:
 private:
     HTM * _htm;

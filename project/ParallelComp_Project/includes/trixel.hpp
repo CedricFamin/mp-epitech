@@ -32,14 +32,21 @@ namespace ICoDF_HTM
             _midPoints[0] = Vector3d{0, 0, 0};
             _midPoints[1] = Vector3d{0, 0, 0};
             _midPoints[2] = Vector3d{0, 0, 0};
+            _trixelBoundary = {0, 0, 0};
+            _phi = 0.0;
         }
         
         struct trixel_s**			_children;	//< trixel's subtrixels
         Vector3d			        _vertices[3];	//< Trixel's vertices
         Vector3d                    _midPoints[3];
+        Vector3d                    _cross01;
+        Vector3d                    _cross12;
+        Vector3d                    _cross20;
+        Vector3d                    _trixelBoundary;
+        
+        double _phi;
         
         bool                        _midPointsComputed;
-        
         bool				        _reverse;	//< is an upside-down trixel ?
         std::string				    _HTMId;		//< N10120112121101
         unsigned int			    _nbChildObject; //< Number of objects contained in this trixel.

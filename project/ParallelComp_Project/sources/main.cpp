@@ -40,8 +40,6 @@ void testOpenCL()
 
 int main(int ac, char **av)
 {
-    // SETTING UP LOG
-    //GenericMemoryPool<trixel_t>::CreateInstance();
     //testOpenCL();
     
     LogService::GetInstance()->SetConfiguration(LogService::LS_PRINT_ON_COUT);
