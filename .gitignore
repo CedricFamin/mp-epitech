@@ -29,3 +29,5 @@ CMakeFiles
 *.xcodeproj
 
 Benchmark
+
+*.trace
