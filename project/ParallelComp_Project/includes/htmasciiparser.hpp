@@ -42,11 +42,11 @@ namespace ICoDF_HTM
         double getMaxRa()  const { return _maxRa;  }
         double getMaxDec() const { return _maxDec; }
 	private:
-		unsigned int                           nbObj;
-		std::vector<std::pair<double, double>> _objects;
-        double                                 _minRa;
-        double                                 _minDec;
-        double                                 _maxRa;
-        double                                 _maxDec;
+	  unsigned int                           nbObj;
+	  double                                 _minRa;
+	  double                                 _minDec;
+	  double                                 _maxRa;
+	  double                                 _maxDec;
+	  std::vector<std::pair<double, double>> _objects;
 	};
 }

@@ -48,10 +48,10 @@ std::vector<std::pair<double, double>> const & ICoDF_HTM::HTMAsciiParser::getObj
 
 ICoDF_HTM::HTMAsciiParser::HTMAsciiParser()
 : nbObj(0)
-, _minRa(std::numeric_limits<double>::max())
-, _minDec(std::numeric_limits<double>::max())
-, _maxRa(std::numeric_limits<double>::min())
-, _maxDec(std::numeric_limits<double>::min())
+, _minRa(361.0)
+, _minDec(91.0)
+, _maxRa(-1.0)
+, _maxDec(-91.0)
 {
 }
 
